@@ -1,0 +1,6 @@
+﻿  main.cpp
+main.obj : error LNK2019: unresolved external symbol "void __cdecl optionA(void)" (?optionA@@YAXXZ) referenced in function main
+main.obj : error LNK2019: unresolved external symbol "void __cdecl optionB(void)" (?optionB@@YAXXZ) referenced in function main
+main.obj : error LNK2019: unresolved external symbol "void __cdecl optionC(void)" (?optionC@@YAXXZ) referenced in function main
+main.obj : error LNK2019: unresolved external symbol "void __cdecl optionX(void)" (?optionX@@YAXXZ) referenced in function main
+C:\Users\chync\OneDrive\Desktop\jrazoCMPR121\Exam1\x64\Debug\Exam1.exe : fatal error LNK1120: 4 unresolved externals
