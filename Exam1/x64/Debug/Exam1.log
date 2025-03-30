@@ -1,6 +1,11 @@
 ﻿  main.cpp
-main.obj : error LNK2019: unresolved external symbol "void __cdecl optionA(void)" (?optionA@@YAXXZ) referenced in function main
-main.obj : error LNK2019: unresolved external symbol "void __cdecl optionB(void)" (?optionB@@YAXXZ) referenced in function main
-main.obj : error LNK2019: unresolved external symbol "void __cdecl optionC(void)" (?optionC@@YAXXZ) referenced in function main
-main.obj : error LNK2019: unresolved external symbol "void __cdecl optionX(void)" (?optionX@@YAXXZ) referenced in function main
-C:\Users\chync\OneDrive\Desktop\jrazoCMPR121\Exam1\x64\Debug\Exam1.exe : fatal error LNK1120: 4 unresolved externals
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(280,36): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(281,47): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(283,36): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(284,47): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(336,10): warning C4101: 'numBytes': unreferenced local variable
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(365,39): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(366,39): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(454,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(457,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Exam1.vcxproj -> C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\x64\Debug\Exam1.exe

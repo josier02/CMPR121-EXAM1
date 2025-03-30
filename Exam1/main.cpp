@@ -29,15 +29,212 @@ struct Element
     char discoveredBy[100] = "unknown"; //Discovered by
 };
 
+
+// Function to set console color
+void setColor(int color)
+{
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
+}
+
+void printElement(int atomicNum, string symbol, int color)
+{
+    setColor(color);
+    cout << "[ " << setw(3) << atomicNum << "-" << left << setw(3) << symbol << " ]";
+    setColor(7); // Reset to default color
+
+}
+
+// Function to print the periodic table
+void printPeriodicTable()
+{
+    cout << "+" << string(206, '-') << "+" << endl;
+    cout << "|" << string(50, ' ') << "Periodic Table of Elements by Atomic Number & Symbol (colors 5 pts Xtra credits)" << string(76, ' ') << "|" << endl;
+
+    // row 1
+    cout << "|" << string(3, ' ');
+    printElement(1, "H", 1); // 1 = blue
+    printElement(2, "He", 12); // 12 = light red
+    cout << string(181, ' ') << "|" << endl;
+
+    // row 2
+    cout << "|" << string(3, ' ');
+    printElement(3, "Li", 11); // 11 = light cyan
+    printElement(4, "Be", 12);
+    cout << string(114, ' ');
+    printElement(5, "B", 14);  // 14 = yellow
+    printElement(6, "C", 1);
+    printElement(7, "N", 1);
+    printElement(8, "O", 1);
+    printElement(9, "F", 1);
+    printElement(10, "Ne", 12);
+    cout << string(1, ' ') << "|" << endl;
+
+    //row3
+    cout << "|" << string(3, ' ');
+    printElement(11, "Na", 11);
+    printElement(12, "Mg", 12);
+    cout << string(114, ' ');
+    printElement(13, "Al", 2); //2 = green
+    printElement(14, "Si", 14);
+    printElement(15, "P", 1);
+    printElement(16, "S", 1);
+    printElement(17, "Cl", 1);
+    printElement(18, "Ar", 12);
+    cout << string(1, ' ') << "|" << endl;
+
+    //row4
+    cout << "|" << string(3, ' ');
+    printElement(19, "K", 11);
+    printElement(20, "Ca", 12);
+    printElement(21, "Sc", 13); //13 = light magenta
+    cout << string(4, ' ');
+    printElement(22, "Ti", 13);
+    printElement(23, "V", 13);
+    printElement(24, "Cr", 13);
+    printElement(25, "Mn", 13);
+    printElement(26, "Fe", 13);
+    printElement(27, "Co", 13);
+    printElement(28, "Ni", 13);
+    printElement(29, "Cu", 13);
+    printElement(30, "Zn", 13);
+    printElement(31, "Ga", 2);
+    printElement(32, "Ge", 14);
+    printElement(33, "As", 14);
+    printElement(34, "Se", 1);
+    printElement(35, "Br", 1);
+    printElement(36, "Kr", 12);
+    cout << string(1, ' ') << "|" << endl;
+
+    //row5
+    cout << "|" << string(3, ' ');
+    printElement(37, "Rb", 11);
+    printElement(38, "Sr", 12);
+    printElement(39, "Y", 13);
+    cout << string(4, ' ');
+    printElement(40, "Zr", 13);
+    printElement(41, "Nb", 13);
+    printElement(42, "Mo", 13);
+    printElement(43, "Tc", 13);
+    printElement(44, "Ru", 13);
+    printElement(45, "Rh", 13);
+    printElement(46, "Pd", 13);
+    printElement(47, "Ag", 13);
+    printElement(48, "Cd", 13);
+    printElement(49, "In", 2);
+    printElement(50, "Sn", 2);
+    printElement(51, "Sb", 14);
+    printElement(52, "Te", 14);
+    printElement(53, "I", 1);
+    printElement(54, "Xe", 12);
+    cout << string(1, ' ') << "|" << endl;
+
+    //row6
+    cout << "|" << string(3, ' ');
+    printElement(55, "Cs", 11);
+    printElement(56, "Ba", 12);
+    printElement(57, "La", 11);
+    cout << "---" << "+";
+    printElement(72, "Hf", 13);
+    printElement(73, "Ta", 13);
+    printElement(74, "W", 13);
+    printElement(75, "Re", 13);
+    printElement(76, "Os", 13);
+    printElement(77, "Ir", 13);
+    printElement(78, "Pt", 13);
+    printElement(79, "Au", 13);
+    printElement(80, "Hg", 13);
+    printElement(81, "Tl", 2);
+    printElement(82, "Pb", 2);
+    printElement(83, "Bi", 2);
+    printElement(84, "Po", 2);
+    printElement(85, "At", 2);
+    printElement(86, "Rn", 12);
+    cout << string(1, ' ') << "|" << endl;
+
+
+    // Row 7 (with "corner" connection from Ra to Ac)
+    cout << "|" << string(3, ' ');
+    printElement(87, "Fr", 11);
+    printElement(88, "Ra", 12);
+    printElement(89, "Ac", 12);
+    cout << "-" << "+";
+    cout << string(1, ' ') << "|";
+    printElement(104, "Rf", 13);
+    printElement(105, "Db", 13);
+    printElement(106, "Sg", 13);
+    printElement(107, "Bh", 13);
+    printElement(108, "Hs", 13);
+    printElement(109, "Mt", 8);
+    printElement(110, "Ds", 8);
+    printElement(111, "Rg", 8);
+    printElement(112, "Cn", 8);
+    printElement(113, "Nh", 8);
+    printElement(114, "Fl", 8);
+    printElement(115, "Mc", 8);
+    printElement(116, "Lv", 8);
+    printElement(117, "Ts", 8);
+    printElement(118, "Og", 8);
+    cout << string(1, ' ') << "|" << endl;
+
+    //row8
+    cout << "|" << string(37, ' ') << "| |";
+    cout << string(166, ' ') << "|" << endl;
+
+    //row9
+    cout << "|" << string(37, ' ') << "| +-";
+    printElement(58, "Ce", 11);
+    printElement(59, "Pr", 11);
+    printElement(60, "Nd", 11);
+    printElement(61, "Pm", 11);
+    printElement(62, "Sm", 11);
+    printElement(63, "Eu", 11);
+    printElement(64, "Gd", 11);
+    printElement(65, "Tb", 11);
+    printElement(66, "Dy", 11);
+    printElement(67, "Ho", 11);
+    printElement(68, "Er", 11);
+    printElement(69, "Tm", 11);
+    printElement(70, "Yb", 11);
+    printElement(71, "Lu", 11);
+    cout << string(11, ' ') << "|" << endl;
+
+    //row10
+    cout << "|" << string(37, ' ') << "+---";
+    printElement(90, "Th", 2);
+    printElement(91, "Pa", 2);
+    printElement(92, "U", 2);
+    printElement(93, "Np", 2);
+    printElement(94, "Pu", 2);
+    printElement(95, "Am", 2);
+    printElement(96, "Cm", 2);
+    printElement(97, "Bk", 2);
+    printElement(98, "Cf", 2);
+    printElement(99, "Es", 2);
+    printElement(100, "Fm", 2);
+    printElement(101, "Md", 2);
+    printElement(102, "No", 2);
+    printElement(103, "Lr", 2);
+    cout << string(11, ' ') << "|";
+
+    //last row
+    cout << endl;
+    cout << "+" << string(206, '-') << "+" << endl;
+}
+
+
+
 int main()
 {
+
+
+
     HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
-    cout << "Periodic Table of Elements by Atomic Number & Symbol";
 
 
     do
     {
-        system("cls");
+        //system("cls");
+        printPeriodicTable(); //displays the periodic table title
         cout << "\n\tCMPR121: Exam#1: Implementation using Dynamic Array, string/C-string, struct, and Binary File By Josephine Razo ";
         cout << "\n\t" << string(80, char(205));
         cout << "\n\t A) Advance Binary Data File (Chapter#12)";
