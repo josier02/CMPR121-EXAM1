@@ -53,8 +53,9 @@ void printPeriodicTable()
     // row 1
     cout << "|" << string(3, ' ');
     printElement(1, "H", 1); // 1 = blue
+    cout << string(180, ' ');
     printElement(2, "He", 12); // 12 = light red
-    cout << string(181, ' ') << "|" << endl;
+    cout << string(1, ' ') << "|" << endl;
 
     // row 2
     cout << "|" << string(3, ' ');
