@@ -1,11 +1,11 @@
 ﻿  main.cpp
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(281,36): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(282,47): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(284,36): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(285,47): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(337,10): warning C4101: 'numBytes': unreferenced local variable
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(366,39): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(367,39): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(455,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(458,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(287,36): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(288,47): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(290,36): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(291,47): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(342,10): warning C4101: 'numBytes': unreferenced local variable
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(371,39): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(372,39): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(460,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(463,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   Exam1.vcxproj -> C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\x64\Debug\Exam1.exe

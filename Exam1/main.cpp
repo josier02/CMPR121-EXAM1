@@ -1,15 +1,23 @@
 
-#include<iostream>
-#include<iomanip>
-#include<vector>
-#include<fstream>
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <iomanip>
+#include <string.h>
+#include <cstring>
+#include <algorithm>
+#include <vector>
+#include "input.h"
 #include <windows.h>
 
-#include "input.h"
+//struct allison used Element alex uses element
+// for members allison uses element and alex uses elements
+
 using namespace std;
 
-void sectionA();
-//void sectionB();
+//prototypes
+void sectionA(); 
+void sectionB();
 //void sectionC();
 //void xTraCredit();
 
@@ -28,6 +36,7 @@ struct Element
     short discoveryYear = 0; //Discovery Year
     char discoveredBy[100] = "unknown"; //Discovered by
 };
+
 
 
 // Function to set console color
@@ -53,9 +62,8 @@ void printPeriodicTable()
     // row 1
     cout << "|" << string(3, ' ');
     printElement(1, "H", 1); // 1 = blue
-    cout << string(180, ' ');
     printElement(2, "He", 12); // 12 = light red
-    cout << string(1, ' ') << "|" << endl;
+    cout << string(181, ' ') << "|" << endl;
 
     // row 2
     cout << "|" << string(3, ' ');
@@ -227,16 +235,13 @@ void printPeriodicTable()
 int main()
 {
 
-
-
     HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
-
 
     do
     {
         //system("cls");
         printPeriodicTable(); //displays the periodic table title
-        cout << "\n\tCMPR121: Exam#1: Implementation using Dynamic Array, string/C-string, struct, and Binary File By Josephine Razo ";
+        cout << "\n\tCMPR121: Exam#1: Implementation using Dynamic Array, string/C-string, struct, and Binary File By YOURNAME ";
         cout << "\n\t" << string(80, char(205));
         cout << "\n\t A) Advance Binary Data File (Chapter#12)";
         cout << "\n\t B) Dynamic Array (Chapter#9)";
@@ -251,15 +256,16 @@ int main()
         {
         case 'Q': exit(0);
         case 'A': sectionA(); break;
-            /* case 'B': sectionB(); break;
-             case 'C': sectionC(); break;*/
+        case 'B': sectionB(); break;
+        //case 'C': sectionC(); break;
              /* case 'X': xTraCredit(); break; */
 
         default:
-            SetConsoleTextAttribute(color, FOREGROUND_RED);
+            SetConsoleTextAttribute(color, 12);
             cout << "\n\tERROR: Invalid option.\n";
             SetConsoleTextAttribute(color, 15);
         }
+        cout << "\n\n\t";
         system("pause");
     } while (true);
 
@@ -267,7 +273,7 @@ int main()
 }
 
 
-void displayAllElements(Element element, fstream& binaryFile)
+void displayAllElements(Element element)
 {
     float kelvinm = 0.0;
     float farenheitm = 0.0;
@@ -304,33 +310,32 @@ void displayAllElements(Element element, fstream& binaryFile)
     }
 
     SetConsoleTextAttribute(color, 2);
-    cout << "Atomic # " << right << setw(8) << ": " << element.atomicNum << "\n";
-    cout << "Symbol " << right << setw(10) << ": " << element.symbol << "\n";
-    cout << "Name " << right << setw(12) << ": " << element.name << "\n";
-    cout << "Mass " << right << setw(12) << setprecision(3) << ": " << element.mass << " u\n";
-    cout << "State type " << right << setw(6) << ": " << element.stateType << "\n";
-    cout << "Group # " << right << setw(9) << setprecision(1) << ": " << element.groupNum << "\n";
-    cout << "Period # " << right << setw(8) << ": " << element.periodNum << "\n";
-    cout << "Block type " << right << setw(7) << ": (" << block << ") " << blockTypeName << "\n";
-    cout << "Melting point " << right << setw(3) << setprecision(2) << fixed << ": " << element.meltingPoint << "\370C; " << farenheitm << "\370F; " << kelvinm << "\370K\n";
-    cout << "Boiling point " << right << setw(3) << ": " << element.boilingPoint << "\370C; " << farenheitb << "\370F; " << kelvinb << "\370K\n";
-    cout << "Discovery year " << right << setw(2) << ": ";
+    cout << "\n\tAtomic # " << right << setw(8) << ": " << element.atomicNum;
+    cout << "\n\tSymbol " << right << setw(10) << ": " << element.symbol;
+    cout << "\n\tName " << right << setw(12) << ": " << element.name;
+    cout << "\n\tMass " << right << setw(12) << setprecision(3) << ": " << element.mass << " u";
+    cout << "\n\tState type " << right << setw(6) << ": " << element.stateType;
+    cout << "\n\tGroup # " << right << setw(9) << setprecision(1) << ": " << element.groupNum;
+    cout << "\n\tPeriod # " << right << setw(8) << ": " << element.periodNum;
+    cout << "\n\tBlock type " << right << setw(7) << ": (" << block << ") " << blockTypeName;
+    cout << "\n\tMelting point " << right << setw(3) << setprecision(2) << fixed << ": " << element.meltingPoint << "\370C; " << farenheitm << "\370F; " << kelvinm << "\370K";
+    cout << "\n\tBoiling point " << right << setw(3) << ": " << element.boilingPoint << "\370C; " << farenheitb << "\370F; " << kelvinb << "\370K";
+    cout << "\n\tDiscovery year " << right << setw(2) << ": ";
     if (element.discoveryYear == 0)
     {
-        cout << "Prehistoric" << "\n";
+        cout << "Prehistoric";
     }
     else
     {
-        cout << element.discoveryYear << "\n";
+        cout << element.discoveryYear;
     }
-    cout << "Discovered by " << right << setw(3) << ": " << element.discoveredBy << "\n\n";
+    cout << "\n\tDiscovered by " << right << setw(3) << ": " << element.discoveredBy << "\n\n";
     SetConsoleTextAttribute(color, 15);
 }
 
 
 void sectionA_fileElementDisplay(fstream& binaryFile)
 {
-    system("cls"); //clears the screen
     HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
     Element element; //holds information about an element
 
@@ -340,13 +345,13 @@ void sectionA_fileElementDisplay(fstream& binaryFile)
     // loops through every record found in the file
     while (binaryFile.read(reinterpret_cast<char*>(&element), sizeof(element)))
     {
-        displayAllElements(element, binaryFile);
+        displayAllElements(element);
         count++;
     }
 
     binaryFile.read(reinterpret_cast<char*>(&element), sizeof(element));
     SetConsoleTextAttribute(color, 2);
-    cout << "CONFIRMATION: " << count << " record(s) found. \n\n";
+    cout << "\n\tCONFIRMATION: " << count << " record(s) found. \n\n";
     SetConsoleTextAttribute(color, 15);
 }
 
@@ -356,21 +361,21 @@ void sectionA_addElement(fstream& binaryFile, string fileBin, long atomicNum)
     HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
 
     element.atomicNum = static_cast <short> (atomicNum);
-    strncpy_s(element.symbol, inputString("Specify the Element Symbol: ", false).c_str(), sizeof(element.symbol) - 1);
-    strncpy_s(element.name, inputString("Specify the Element Name: ", false).c_str(), sizeof(element.name) - 1);
-    element.mass = static_cast<float> (inputDouble("Specify the Element Mass: ", true));
-    element.stateType = inputChar("Specify the Element State type(S - solid, L - liquid, G - gas, or U - unknown) : ", static_cast<string>("SLGU"));
-    element.groupNum = inputInteger("Specify the Element Group # (0-unknown or 1...18) : ", 0, 18);
-    element.periodNum = inputInteger("Specify the Element Period # (0-unknown or 1...7) : ", 0, 7);
-    element.blockType = inputChar("Specify the Element Block type(S - sharp, P - principal, D - diffuse, or F - fundamental) : ", static_cast<string>("SPDF"));
-    element.meltingPoint = inputDouble("Specify the Element Melting Point (celsius degree) : ");
-    element.boilingPoint = inputDouble("Specify the Element Boiling Point (celsius degree) : ");
-    element.discoveryYear = static_cast <short> (inputInteger("Specify the Element Discovery Year : ", 0, 2025));
-    strncpy_s(element.discoveredBy, inputString("Specify the Element Discovered By : ", true).c_str(), sizeof(element.discoveredBy) - 1);
+    strncpy_s(element.symbol, inputString("\tSpecify the Element Symbol: ", false).c_str(), sizeof(element.symbol) - 1);
+    strncpy_s(element.name, inputString("\tSpecify the Element Name: ", false).c_str(), sizeof(element.name) - 1);
+    element.mass = static_cast<float> (inputDouble("\tSpecify the Element Mass: ", true));
+    element.stateType = inputChar("\tSpecify the Element State type(S - solid, L - liquid, G - gas, or U - unknown) : ", static_cast<string>("SLGU"));
+    element.groupNum = inputInteger("\tSpecify the Element Group # (0-unknown or 1...18) : ", 0, 18);
+    element.periodNum = inputInteger("\tSpecify the Element Period # (0-unknown or 1...7) : ", 0, 7);
+    element.blockType = inputChar("\tSpecify the Element Block type(S - sharp, P - principal, D - diffuse, or F - fundamental) : ", static_cast<string>("SPDF"));
+    element.meltingPoint = inputDouble("\tSpecify the Element Melting Point (celsius degree) : ");
+    element.boilingPoint = inputDouble("\tSpecify the Element Boiling Point (celsius degree) : ");
+    element.discoveryYear = static_cast <short> (inputInteger("\tSpecify the Element Discovery Year : ", 0, 2025));
+    strncpy_s(element.discoveredBy, inputString("\tSpecify the Element Discovered By : ", true).c_str(), sizeof(element.discoveredBy) - 1);
 
     binaryFile.write(reinterpret_cast<char*> (&element), sizeof(element));
     SetConsoleTextAttribute(color, 2);
-    cout << "\nCONFIRMATION: A new element with Atomic # (" << element.atomicNum << ") has been added / appended into the binary data file, " << fileBin << " \n";
+    cout << "\n\tCONFIRMATION: A new element with Atomic # (" << element.atomicNum << ") has been added / appended into the binary data file, " << fileBin << " \n";
     SetConsoleTextAttribute(color, 15);
 }
 
@@ -388,7 +393,7 @@ void sectionA_updateElement(Element element, fstream& binaryFile, string fileBin
     {
         system("cls");
         SetConsoleTextAttribute(color, 2);
-        displayAllElements(temp, binaryFile);
+        displayAllElements(temp);
         SetConsoleTextAttribute(color, 15);
 
 
@@ -421,47 +426,47 @@ void sectionA_updateElement(Element element, fstream& binaryFile, string fileBin
             //Writes to specified record
             binaryFile.write(reinterpret_cast<char*>(&element), sizeof(element));
             SetConsoleTextAttribute(color, 2);
-            cout << "CONFIRMATION: Element with Atomic # (" << recNum << ") has been updated into the binary data file," << fileBin << "\n";
+            cout << "\n\tCONFIRMATION: Element with Atomic # (" << recNum << ") has been updated into the binary data file," << fileBin << "\n\n";
             SetConsoleTextAttribute(color, 15);
             return;
         case -1:
             temp = { 0 };
             SetConsoleTextAttribute(color, 0x0E);
-            cout << "WARNING: No update was commited.\n";
+            cout << "\n\tWARNING: No update was commited.\n\n";
             SetConsoleTextAttribute(color, 0x07);
             return;
         case 1:
-            strncpy_s(temp.symbol, inputString("Specify a new Element Symbol: ", false).c_str(), sizeof(temp.symbol) - 1);
+            strncpy_s(temp.symbol, inputString("\n\tSpecify a new Element Symbol: ", false).c_str(), sizeof(temp.symbol) - 1);
             break;
         case 2:
-            strncpy_s(temp.name, inputString("Specify a new Element Name: ", false).c_str(), sizeof(temp.name) - 1);
+            strncpy_s(temp.name, inputString("\n\tSpecify a new Element Name: ", false).c_str(), sizeof(temp.name) - 1);
             break;
         case 3:
-            temp.mass = static_cast<float> (inputDouble("Specify a new Element Mass: ", true));
+            temp.mass = static_cast<float> (inputDouble("\n\tSpecify a new Element Mass: ", true));
             break;
         case 4:
-            temp.stateType = inputChar("Specify a new Element State type(S - solid, L - liquid, G - gas, or U - unknown) : ", static_cast<string>("SLGU"));
+            temp.stateType = inputChar("\n\tSpecify a new Element State type(S - solid, L - liquid, G - gas, or U - unknown) : ", static_cast<string>("SLGU"));
             break;
         case 5:
-            temp.groupNum = inputInteger("Specify a new Element Group # (0-unknown or 1...18) : ", 0, 18);
+            temp.groupNum = inputInteger("\n\tSpecify a new Element Group # (0-unknown or 1...18) : ", 0, 18);
             break;
         case 6:
-            temp.blockType = inputChar("Specify a new Element Block type(S - sharp, P - principal, D - diffuse, or F - fundamental) : ", static_cast<string>("SPDF"));
+            temp.blockType = inputChar("\n\tSpecify a new Element Block type(S - sharp, P - principal, D - diffuse, or F - fundamental) : ", static_cast<string>("SPDF"));
             break;
         case 7:
-            temp.periodNum = inputInteger("Specify a new Element Period # (0-unknown or 1...7) : ", 0, 7);
+            temp.periodNum = inputInteger("\n\tSpecify a new Element Period # (0-unknown or 1...7) : ", 0, 7);
             break;
         case 8:
-            temp.meltingPoint = inputDouble("Specify the Element Melting Point (celsius degree) : ");
+            temp.meltingPoint = inputDouble("\n\tSpecify the new Element Melting Point (celsius degree) : ");
             break;
         case 9:
-            temp.boilingPoint = inputDouble("Specify the Element Boiling Point (celsius degree) : ");
+            temp.boilingPoint = inputDouble("\n\tSpecify the new Element Boiling Point (celsius degree) : ");
             break;
         case 10:
-            temp.discoveryYear = static_cast <short> (inputInteger("Specify the Element Discovery Year : ", 0, 2025));
+            temp.discoveryYear = static_cast <short> (inputInteger("\n\tSpecify the new Element Discovery Year : ", 0, 2025));
             break;
         case 11:
-            strncpy_s(temp.discoveredBy, inputString("Specify the Element Discovered By : ", true).c_str(), sizeof(temp.discoveredBy) - 1);
+            strncpy_s(temp.discoveredBy, inputString("\n\tSpecify the new Element Discovered By : ", true).c_str(), sizeof(temp.discoveredBy) - 1);
             break;
         }
 
@@ -471,13 +476,17 @@ void sectionA_updateElement(Element element, fstream& binaryFile, string fileBin
 
 void sectionA_elementSearch(Element element, fstream& binaryFile, string fileBin, int count)
 {
+    HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
 
-    cout << "\nCONFIRMATION: The Element with Atomic # (" << element.atomicNum << ") is found at location #" << count << "\n";
+    SetConsoleTextAttribute(color, 2);
+    cout << "\n\tCONFIRMATION: The Element with Atomic # (" << element.atomicNum << ") is found at location #" << count << "\n\n";
+    SetConsoleTextAttribute(color, 15);
 
 }
 
 void sectionA()
 {
+    HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
     fstream binaryFile; // only reads data from file; File Stream Object
     Element element;
     string fileBin;
@@ -495,17 +504,23 @@ void sectionA()
         cout << "\n\t" << string(80, '-');
         cout << "\n\t0) Return to main menu";
 
-        switch (inputInteger("\tOption: ", 0, 4))
+
+        cout << "\n\t" << string(80, '=');
+        switch (inputInteger("\n\tOption: ", 0, 4))
         {
-        case 0: return;
+        case 0: //professor has it clear screen and display main screen 
+            system("cls"); //clears the screen but is showing press any key at top needs fixing
+            return;
         case 1:
             system("cls"); //clears the screen
 
-            fileBin = inputString("\nSpecify a valid binary data file name to retrieve data from: ", false);
+            fileBin = inputString("\n\tSpecify a valid binary data file name to retrieve data from: ", false);
             binaryFile.open(fileBin, ios::in | ios::binary);
             if (!binaryFile)
             {
-                cout << "ERROR: File, " << fileBin << ", cannot be found.\n";
+                SetConsoleTextAttribute(color, 12);
+                cout << "\n\tERROR: File, " << fileBin << ", cannot be found.\n\n";
+                SetConsoleTextAttribute(color, 15);
             }
             else
             {
@@ -515,18 +530,19 @@ void sectionA()
             break;
         case 2:
             system("cls"); //clears the screen
-            cout << "Directly add an element into the binary data file... \n";
+            cout << "\tDirectly add an element into the binary data file... \n\n";
 
             binaryFile.open(fileBin, ios::in | ios::out | ios::binary | ios::app);
             if (fileBin.empty())
             {
-                cout << "\nERROR: Binary Data file has NOT been specified from Option #1. Please re-perform Option #1. \n\n";
+                SetConsoleTextAttribute(color, 12);
+                cout << "\n\tERROR: Binary Data file has NOT been specified from Option #1. Please re-perform Option #1. \n\n";
+                SetConsoleTextAttribute(color, 15);
             }
             else
             {
-                system("cls"); //clears the screen
-                cout << "Adding a new element information\n\n";
-                recNum = static_cast <long> (inputInteger("Specify the Atomic # : ", 1, 118));
+                cout << "\n\tAdding a new element information\n\n";
+                recNum = static_cast <long> (inputInteger("\n\tSpecify the Atomic # : ", 1, 118));
                 binaryFile.read(reinterpret_cast<char*>(&element), sizeof(element));
                 bool findNum = false;
 
@@ -534,9 +550,10 @@ void sectionA()
                 {
                     if (recNum == element.atomicNum)
                     {
-                        //sectionA_addElement(element, binaryFile, fileBin, recNum);
                         findNum = true;
-                        cout << "\n ERROR: Cannot add a new Element with Atomic # (" << recNum << ") that is already existed. Please perform other valid Options.\n\n";
+                        SetConsoleTextAttribute(color, 12);
+                        cout << "\n\tERROR: Cannot add a new Element with Atomic # (" << recNum << ") that is already existed. Please perform other valid Options.\n\n";
+                        SetConsoleTextAttribute(color, 15);
                         break;
                     }
 
@@ -556,16 +573,18 @@ void sectionA()
             break;
         case 3:
             system("cls");
-            cout << "Updating an element in the binary data file... \n\n";
+            cout << "\n\tUpdating an element in the binary data file... \n\n";
 
             if (fileBin.empty())
             {
-                cout << "\nERROR: Binary Data file has NOT been specified from Option #1. Please re-perform Option #1. \n\n";
+                SetConsoleTextAttribute(color, 12);
+                cout << "\n\tERROR: Binary Data file has NOT been specified from Option #1. Please re-perform Option #1. \n\n";
+                SetConsoleTextAttribute(color, 15);
             }
             else
             {
                 binaryFile.open(fileBin, ios::in | ios::out | ios::binary);
-                recNum = static_cast<long>(inputInteger("Specify the Element Atomic # to be updated: "));
+                recNum = static_cast<long>(inputInteger("\tSpecify the Element Atomic # to be updated: "));
                 binaryFile.read(reinterpret_cast<char*>(&element), sizeof(element));
                 bool isFound = false;
                 int count = 0;
@@ -587,23 +606,27 @@ void sectionA()
 
                 if (isFound == false)
                 {
-                    cout << "\n ERROR: Cannot find the Element with Atomic # (" << recNum << "). Please perform other valid option.\n\n";
+                    SetConsoleTextAttribute(color, 12);
+                    cout << "\n\tERROR: Cannot find the Element with Atomic # (" << recNum << "). Please perform other valid option.\n\n";
+                    SetConsoleTextAttribute(color, 15);
                 }
             }
             binaryFile.close();
             break;
         case 4:
             system("cls");
-            cout << "Searching an element located in the binary data file...\n";
+            cout << "\n\tSearching an element located in the binary data file...\n\n";
 
             binaryFile.open(fileBin, ios::in | ios::out | ios::binary);
             if (fileBin.empty())
             {
-                cout << "\nERROR: Binary Data file has NOT been specified from Option #1. Please re-perform Option #1. \n\n";
+                SetConsoleTextAttribute(color, 12);
+                cout << "\n\tERROR: Binary Data file has NOT been specified from Option #1. Please re-perform Option #1. \n\n";
+                SetConsoleTextAttribute(color, 15);
             }
             else
             {
-                recNum = static_cast<long>(inputInteger("Specify the Element Atomic # to be searched : "));
+                recNum = static_cast<long>(inputInteger("\tSpecify the Element Atomic # to be searched : "));
                 binaryFile.read(reinterpret_cast<char*>(&element), sizeof(element));
                 bool isFound = false;
                 int count = 0;
@@ -623,7 +646,9 @@ void sectionA()
 
                 if (isFound == false)
                 {
-                    cout << "\n ERROR: Cannot find the Element with Atomic # (" << recNum << "). Please perform other valid option.\n\n";
+                    SetConsoleTextAttribute(color, 12);
+                    cout << "\n\tERROR: Cannot find the Element with Atomic # (" << recNum << "). Please perform other valid option.\n\n";
+                    SetConsoleTextAttribute(color, 15);
 
                 }
 
@@ -638,3 +663,85 @@ void sectionA()
 
 }
 
+
+void sectionB()
+{
+    do
+    {
+        system("cls"); //clears the screen
+        cout << "\n\t Option B: Dynamic Array";
+        cout << "\n\t" << string(80, '=');
+        cout << "\n\t1) Read element(s) from the binary data file and store into the dynamic array";
+        cout << "\n\t2) Display element(s) from the dynamic array";
+        cout << "\n\t3) Add a new chemistry element into the dynamic array";
+        cout << "\n\t4) Update an existing chemistry element from the dynamic array";
+        cout << "\n\t5) Sort the dynamic array by Symbol in descending order";
+        cout << "\n\t6) Binary search an element by Symbol";
+        cout << "\n\t7) Write elements from the dynamic array to the binary data file.";
+        cout << "\n\t" << string(80, '-');
+        cout << "\n\t0) Return to main menu";
+
+        switch (inputInteger("\tOption: ", 0, 7))
+        {
+        case 0: return;
+        case 1:
+           // sectionB1(); //combining allisons and alex's code
+            break;
+        case 2:
+          //  sectionB_displayElement();
+            break;
+        case 3:
+           // sectionB_addElement();
+            break;
+        case 4:
+           // sectionB_updateElement();
+            break;
+        case 5:
+           // sectionB_sortbySymbol();
+            break;
+        case 6:
+           // sectionB_binarySearchSymbol();
+            break;
+        case 7:
+           // sectionB_arraytoFile();
+            break;
+        }
+
+        system("pause");
+    } while (true);
+} 
+/*
+int sectionB1(Element*& element, int& SIZE)
+{
+    system("cls");
+    Element item; //alex has element item
+
+    //prompt user for the file
+    string fileNamePrompt = inputString("\n\tSpecify the binary file name to read from: ", false);
+
+    ifstream myDataFileB1(fileNamePrompt, ios::binary);
+
+    if (!myDataFileB1.is_open())
+    {
+        cout << "\n\tERROR: FILE " << fileNamePrompt << " CANNOT BE FOUND.";
+        //set color to red
+        return 1;
+
+    }
+
+
+    //here is my new dynamic array 
+    element = new Element[SIZE];
+
+    if (element == nullptr)
+        cout << "Mem check ";
+
+    myDataFileB1.seekg(0, ios::beg); // back to the start 
+
+   
+    myDataFileB1.read(reinterpret_cast<char*>(element), SIZE * sizeof(Element));
+
+
+
+}
+*/
