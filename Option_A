@@ -57,8 +57,8 @@ int main()
            /* case 'X': xTraCredit(); break; */
 
         default: 
-            SetConsoleTextAttribute(color, FOREGROUND_RED);
-            cout << "\n\tERROR: Invalid option.\n";
+            SetConsoleTextAttribute(color, 12);
+            cout << "\n\tERROR: Invalid option.\n\n";
             SetConsoleTextAttribute(color, 15);
         }
         system("pause");
@@ -68,7 +68,7 @@ int main()
 }
 
 
-void displayAllElements(Element element, fstream& binaryFile)
+void displayAllElements(Element element)
 {
     float kelvinm = 0.0;
     float farenheitm = 0.0;
@@ -140,7 +140,7 @@ void sectionA_fileElementDisplay(fstream &binaryFile)
      // loops through every record found in the file
     while (binaryFile.read(reinterpret_cast<char*>(&element), sizeof(element)))
     {
-        displayAllElements(element, binaryFile);
+        displayAllElements(element);
         count++;
     }
 
@@ -188,7 +188,7 @@ void sectionA_updateElement(Element element, fstream& binaryFile, string fileBin
         {
             system("cls");
             SetConsoleTextAttribute(color, 2);
-            displayAllElements(temp, binaryFile);
+            displayAllElements(temp);
             SetConsoleTextAttribute(color, 15);
 
 
@@ -271,13 +271,17 @@ void sectionA_updateElement(Element element, fstream& binaryFile, string fileBin
 
 void sectionA_elementSearch(Element element, fstream& binaryFile, string fileBin, int count)
 {
+    HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
 
+    SetConsoleTextAttribute(color, 2);
     cout << "\n\tCONFIRMATION: The Element with Atomic # (" << element.atomicNum << ") is found at location #" << count << "\n\n";
+    SetConsoleTextAttribute(color, 15);
        
 }
 
 void sectionA()
 {
+    HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
     fstream binaryFile; // only reads data from file; File Stream Object
     Element element;
     string fileBin;
@@ -305,7 +309,9 @@ void sectionA()
             binaryFile.open(fileBin, ios::in | ios::binary);
             if (!binaryFile)
             {
-                cout << "\n\tERROR: File, " << fileBin << ", cannot be found.\n";
+                SetConsoleTextAttribute(color, 12);
+                cout << "\n\tERROR: File, " << fileBin << ", cannot be found.\n\n";
+                SetConsoleTextAttribute(color, 15);
             }
             else
             { 
@@ -315,17 +321,19 @@ void sectionA()
             break;
         case 2:
             system("cls"); //clears the screen
-            cout << "\n\tDirectly add an element into the binary data file... \n";
+            cout << "\tDirectly add an element into the binary data file... \n\n";
 
             binaryFile.open(fileBin, ios::in | ios::out | ios::binary | ios::app);
             if (fileBin.empty())
             {
+                SetConsoleTextAttribute(color, 12);
                 cout << "\n\tERROR: Binary Data file has NOT been specified from Option #1. Please re-perform Option #1. \n\n";
+                SetConsoleTextAttribute(color, 15);
             }
             else
             {
                 cout << "\n\tAdding a new element information\n\n";
-                recNum = static_cast <long> (inputInteger("\tSpecify the Atomic # : ", 1, 118));
+                recNum = static_cast <long> (inputInteger("\n\tSpecify the Atomic # : ", 1, 118));
                 binaryFile.read(reinterpret_cast<char*>(&element), sizeof(element));
                 bool findNum = false;
                
@@ -334,7 +342,9 @@ void sectionA()
                     if (recNum == element.atomicNum)
                     {
                         findNum = true;
+                        SetConsoleTextAttribute(color, 12);
                         cout << "\n\tERROR: Cannot add a new Element with Atomic # (" << recNum << ") that is already existed. Please perform other valid Options.\n\n";
+                        SetConsoleTextAttribute(color, 15);
                         break;
                     }
                   
@@ -358,7 +368,9 @@ void sectionA()
 
             if (fileBin.empty())
             {
+                SetConsoleTextAttribute(color, 12);
                 cout << "\n\tERROR: Binary Data file has NOT been specified from Option #1. Please re-perform Option #1. \n\n";
+                SetConsoleTextAttribute(color, 15);
             }
             else
             {
@@ -385,7 +397,9 @@ void sectionA()
          
                 if (isFound == false)
                 {
+                    SetConsoleTextAttribute(color, 12);
                     cout << "\n\tERROR: Cannot find the Element with Atomic # (" << recNum << "). Please perform other valid option.\n\n";
+                    SetConsoleTextAttribute(color, 15);
                 }
             }
             binaryFile.close();
@@ -397,7 +411,9 @@ void sectionA()
             binaryFile.open(fileBin, ios::in | ios::out | ios::binary);
             if (fileBin.empty())
             {
+                SetConsoleTextAttribute(color, 12);
                 cout << "\n\tERROR: Binary Data file has NOT been specified from Option #1. Please re-perform Option #1. \n\n";
+                SetConsoleTextAttribute(color, 15);
             }
             else 
             {
@@ -421,7 +437,9 @@ void sectionA()
 
                 if (isFound == false)
                 {
+                    SetConsoleTextAttribute(color, 12);
                     cout << "\n\tERROR: Cannot find the Element with Atomic # (" << recNum << "). Please perform other valid option.\n\n";
+                    SetConsoleTextAttribute(color, 15);
 
                 }
                 
