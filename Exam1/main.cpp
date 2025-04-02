@@ -24,7 +24,15 @@ using namespace std;
 void sectionA(); 
 void sectionB(); 
 void sectionC(); 
-//void xTraCredit();
+
+void optionX();
+
+//Prints individual bracket with atomic number and element symbol through taking a number by Christopher Rios
+void printBracket(int i);
+
+void printMenuPeriodicTable();
+
+const int ELEMENT_COUNT = 118;
 
 struct Element 
 {
@@ -42,206 +50,411 @@ struct Element
     char discoveredBy[100] = "unknown"; //Discovered by
 };
 
-// Function to set console color
-void setColor(int color)
+Element elements[118] =
 {
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
+    {1, "H", "Hydrogen", 1.008, 'g', 1, 1, 1, -259.16, -252.87, 1766, "Henry Cavendish"},
+    {2, "He", "Helium", 4.0026, 'g', 18, 1, 1, -272.2, -268.93, 1895, "Sir William Ramsay"},
+    {3, "Li", "Lithium", 6.94, 's', 1, 2, 1, 180.54, 1342, 1817, "Johan August Arfvedson"},
+    {4, "Be", "Beryllium", 9.0122, 's', 2, 2, 1, 1287, 2471, 1798, "Louis-Nicolas Vauquelin"},
+    {5, "B", "Boron", 10.81, 's', 13, 2, 2, 2076, 3927, 1808, "Joseph Louis Gay-Lussac"},
+    {6, "C", "Carbon", 12.011, 's', 14, 2, 2, 3550, 4827, -0, "Unknown"},
+    {7, "N", "Nitrogen", 14.007, 'g', 15, 2, 2, -210.1, -195.79, 1772, "Daniel Rutherford"},
+    {8, "O", "Oxygen", 15.999, 'g', 16, 2, 2, -218.79, -182.95, 1774, "Joseph Priestley"},
+    {9, "F", "Fluorine", 18.998, 'g', 17, 2, 2, -219.67, -188.12, 1886, "Henri Moissan"},
+    {10, "Ne", "Neon", 20.180, 'g', 18, 2, 2, -248.59, -246.08, 1898, "Sir William Ramsay"},
+    {11, "Na", "Sodium", 22.990, 's', 1, 3, 1, 97.72, 883, 1807, "Humphry Davy"},
+    {12, "Mg", "Magnesium", 24.305, 's', 2, 3, 1, 650, 1091, 1808, "Humphry Davy"},
+    {13, "Al", "Aluminum", 26.982, 's', 13, 3, 2, 660.32, 2470, 1825, "Hans Christian Ørsted"},
+    {14, "Si", "Silicon", 28.085, 's', 14, 3, 2, 1414, 3265, 1824, "Jöns Jakob Berzelius"},
+    {15, "P", "Phosphorus", 30.974, 's', 15, 3, 2, 44.15, 280.5, 1669, "Hennig Brand"},
+    {16, "S", "Sulfur", 32.06, 's', 16, 3, 2, 115.21, 444.6, -0, "Unknown"},
+    {17, "Cl", "Chlorine", 35.45, 'g', 17, 3, 2, -101.5, -34.04, 1774, "Carl Wilhelm Scheele"},
+    {18, "Ar", "Argon", 39.948, 'g', 18, 3, 2, -189.35, -185.85, 1894, "Lord Rayleigh and Sir William Ramsay"},
+    {19, "K", "Potassium", 39.098, 's', 1, 4, 1, 63.38, 759, 1807, "Humphry Davy"},
+    {20, "Ca", "Calcium", 40.078, 's', 2, 4, 1, 842, 1484, 1808, "Humphry Davy"},
+    {21, "Sc", "Scandium", 44.956, 's', 3, 4, 1, 1541, 2836, 1879, "Lars Fredrik Nilson"},
+    {22, "Ti", "Titanium", 47.867, 's', 4, 4, 1, 1668, 3287, 1791, "William Gregor"},
+    {23, "V", "Vanadium", 50.942, 's', 5, 4, 1, 1910, 3407, 1801, "Andrés Manuel del Río"},
+    {24, "Cr", "Chromium", 51.996, 's', 6, 4, 1, 1907, 2671, 1797, "Louis-Nicolas Vauquelin"},
+    {25, "Mn", "Manganese", 54.938, 's', 7, 4, 1, 1246, 2061, 1774, "Carl Wilhelm Scheele"},
+    {26, "Fe", "Iron", 55.845, 's', 8, 4, 1, 1538, 2862, -0, "Unknown"},
+    {27, "Co", "Cobalt", 58.933, 's', 9, 4, 1, 1495, 2927, 1735, "Georg Brandt"},
+    {28, "Ni", "Nickel", 58.693, 's', 10, 4, 1, 1455, 2730, 1751, "Axel Fredrik Cronstedt"},
+    {29, "Cu", "Copper", 63.546, 's', 11, 4, 1, 1084.62, 2562, -0, "Unknown"},
+    {30, "Zn", "Zinc", 65.38, 's', 12, 4, 1, 419.53, 907, -0, "Unknown"},
+    {31, "Ga", "Gallium", 69.723, 's', 13, 4, 2, 29.76, 2204, 1875, "Lecoq de Boisbaudran"},
+    {32, "Ge", "Germanium", 72.63, 's', 14, 4, 2, 938.25, 2833, 1886, "Clemens Winkler"},
+    {33, "As", "Arsenic", 74.9216, 's', 15, 4, 2, 817, 614, -0, "Unknown"},
+    {34, "Se", "Selenium", 78.96, 's', 16, 4, 2, 221, 685, 1817, "Jöns Jakob Berzelius"},
+    {35, "Br", "Bromine", 79.904, 'l', 17, 4, 2, -7.2, 58.8, 1826, "Antoine Jérôme Balard"},
+    {36, "Kr", "Krypton", 83.798, 'g', 18, 4, 2, -157.36, -153.22, 1898, "Sir William Ramsay"},
+    {37, "Rb", "Rubidium", 85.4678, 's', 1, 5, 1, 39.31, 688, 1861, "Robert Bunsen"},
+    {38, "Sr", "Strontium", 87.62, 's', 2, 5, 1, 777, 1382, 1790, "Adair Crawford"},
+    {39, "Y", "Yttrium", 88.9059, 's', 3, 5, 1, 1526, 3336, 1794, "Johan Gadolin"},
+    {40, "Zr", "Zirconium", 91.224, 's', 4, 5, 1, 1855, 4409, 1789, "Martin Heinrich Klaproth"},
+    {41, "Nb", "Niobium", 92.9064, 's', 5, 5, 1, 2477, 4744, 1801, "Charles Hatchett"},
+    {42, "Mo", "Molybdenum", 95.95, 's', 6, 5, 1, 2623, 4639, 1778, "Carl Wilhelm Scheele"},
+    {43, "Tc", "Technetium", 98, 's', 7, 5, 1, 2157, 4265, 1937, "Carlo Perrier"},
+    {44, "Ru", "Ruthenium", 101.07, 's', 8, 5, 1, 2334, 4150, 1844, "Karl Ernst Claus"},
+    {45, "Rh", "Rhodium", 102.9055, 's', 9, 5, 1, 1964, 3695, 1803, "William Hyde Wollaston"},
+    {46, "Pd", "Palladium", 106.42, 's', 10, 5, 1, 1554.9, 2963, 1803, "William Hyde Wollaston"},
+    {47, "Ag", "Silver", 107.8682, 's', 11, 5, 1, 961.78, 2162, -0, "Unknown"},
+    {48, "Cd", "Cadmium", 112.414, 's', 12, 5, 1, 321.07, 767, 1817, "Friedrich Stromeyer"},
+    {49, "In", "Indium", 114.818, 's', 13, 5, 2, 156.6, 2072, 1863, "Ferdinand Reich"},
+    {50, "Sn", "Tin", 118.71, 's', 14, 5, 2, 231.93, 2602, -0, "Unknown"},
+    {51, "Sb", "Antimony", 121.76, 's', 15, 5, 2, 630.63, 1587, -0, "Unknown"},
+    {52, "Te", "Tellurium", 127.6, 's', 16, 5, 2, 449.51, 988, 1782, "Franz-Joseph Müller von Reichenstein"},
+    {53, "I", "Iodine", 126.9045, 's', 17, 5, 2, 113.7, 184.3, 1811, "Bernard Courtois"},
+    {54, "Xe", "Xenon", 131.293, 'g', 18, 5, 2, -111.8, -108.1, 1898, "Sir William Ramsay"},
+    {55, "Cs", "Cesium", 132.9055, 's', 1, 6, 1, 28.44, 671, 1860, "Robert Bunsen"},
+    {56, "Ba", "Barium", 137.327, 's', 2, 6, 1, 727, 1897, 1808, "Humphry Davy"},
+    {57, "La", "Lanthanum", 138.9055, 's', 3, 6, 1, 920, 3464, 1839, "Carl Gustaf Mosander"},
+    {58, "Ce", "Cerium", 140.116, 's', 4, 6, 1, 798, 3443, 1803, "Martin Heinrich Klaproth"},
+    {59, "Pr", "Praseodymium", 140.9077, 's', 5, 6, 1, 931, 3520, 1885, "Carl Auer von Welsbach"},
+    {60, "Nd", "Neodymium", 144.242, 's', 6, 6, 1, 1024, 3074, 1885, "Carl Auer von Welsbach"},
+    {61, "Pm", "Promethium", 145, 's', 7, 6, 1, 1042, 3000, 1945, "Jacob A. Marinsky"},
+    {62, "Sm", "Samarium", 150.36, 's', 8, 6, 1, 1072, 1794, 1879, "Lecoq de Boisbaudran"},
+    {63, "Eu", "Europium", 151.964, 's', 9, 6, 1, 822, 1529, 1901, "Eugène-Anatole Demarçay"},
+    {64, "Gd", "Gadolinium", 157.25, 's', 10, 6, 1, 1312, 3250, 1880, "Jean Charles Galissard de Marignac"},
+    {65, "Tb", "Terbium", 158.9253, 's', 11, 6, 1, 1356, 3230, 1843, "Carl Gustaf Mosander"},
+    {66, "Dy", "Dysprosium", 162.5, 's', 12, 6, 1, 1412, 2567, 1886, "Paul Émile Lecoq de Boisbaudran"},
+    {67, "Ho", "Holmium", 164.9303, 's', 13, 6, 1, 1474, 2700, 1878, "Marc Delafontaine"},
+    {68, "Er", "Erbium", 167.259, 's', 14, 6, 1, 1529, 2868, 1842, "Carl Gustaf Mosander"},
+    {69, "Tm", "Thulium", 168.9342, 's', 15, 6, 1, 1545, 1950, 1879, "Per Teodor Cleve"},
+    {70, "Yb", "Ytterbium", 173.045, 's', 16, 6, 1, 1097, 1469, 1878, "Jean Charles Galissard de Marignac"},
+    {71, "Lu", "Lutetium", 174.9668, 's', 17, 6, 1, 1652, 3402, 1907, "Georges Urbain"},
+    {72, "Hf", "Hafnium", 178.49, 's', 4, 6, 1, 2233, 4603, 1923, "Dirk Coster"},
+    {73, "Ta", "Tantalum", 180.9479, 's', 5, 6, 1, 3017, 5458, 1802, "Anders Ekeberg"},
+    {74, "W", "Tungsten", 183.84, 's', 6, 6, 1, 3422, 5555, 1783, "José and Fausto Elhuyar"},
+    {75, "Re", "Rhenium", 186.207, 's', 7, 6, 1, 3186, 5596, 1925, "Ida Noddack"},
+    {76, "Os", "Osmium", 190.23, 's', 8, 6, 1, 3033, 5012, 1803, "Smithson Tennant"},
+    {77, "Ir", "Iridium", 192.217, 's', 9, 6, 1, 2466, 4428, 1803, "Smithson Tennant"},
+    {78, "Pt", "Platinum", 195.084, 's', 10, 6, 1, 1768.3, 3825, 1735, "Antonio de Ulloa"},
+    {79, "Au", "Gold", 196.9665, 's', 11, 6, 1, 1064.18, 2970, -0, "Unknown"},
+    {80, "Hg", "Mercury", 200.592, 'l', 12, 6, 1, -38.83, 356.73, -0, "Unknown"},
+    {81, "Tl", "Thallium", 204.38, 's', 13, 6, 1, 304, 1473, 1861, "William Crookes"},
+    {82, "Pb", "Lead", 207.2, 's', 14, 6, 1, 327.46, 1749, -0, "Unknown"},
+    {83, "Bi", "Bismuth", 208.9804, 's', 15, 6, 1, 271.3, 1564, 1753, "Claude François Geoffroy"},
+    {84, "Po", "Polonium", 209, 's', 16, 6, 1, 254, 962, 1898, "Marie Curie"},
+    {85, "At", "Astatine", 210, 's', 17, 6, 1, 302, 337, 1940, "Dale R. Corson"},
+    {86, "Rn", "Radon", 222, 'g', 18, 6, 1, -71, -61.7, 1900, "Friedrich Ernst Dorn"},
+    {87, "Fr", "Francium", 223, 's', 1, 7, 1, 27, 677, 1939, "Marguerite Perey"},
+    {88, "Ra", "Radium", 226, 's', 2, 7, 1, 700, 1737, 1898, "Marie Curie"},
+    {89, "Ac", "Actinium", 227, 's', 3, 7, 1, 1050, 3200, 1899, "Friedrich Oskar Giesel"},
+    {90, "Th", "Thorium", 232.0381, 's', 4, 7, 1, 1750, 4788, 1829, "Jöns Jakob Berzelius"},
+    {91, "Pa", "Protactinium", 231.0359, 's', 5, 7, 1, 1568, 4027, 1913, "Kaiser Wilhelm Institute"},
+    {92, "U", "Uranium", 238.0289, 's', 6, 7, 1, 1135, 4131, 1789, "Martin Heinrich Klaproth"},
+    {93, "Np", "Neptunium", 237, 's', 7, 7, 1, 640, 3902, 1940, "Edwin McMillan"},
+    {94, "Pu", "Plutonium", 244, 's', 8, 7, 1, 640, 3228, 1940, "Glenn T. Seaborg"},
+    {95, "Am", "Americium", 243, 's', 9, 7, 1, 1176, 2607, 1944, "Glenn T. Seaborg"},
+    {96, "Cm", "Curium", 247, 's', 10, 7, 1, 1340, 3110, 1944, "Glenn T. Seaborg"},
+    {97, "Bk", "Berkelium", 247, 's', 11, 7, 1, 986, 2627, 1949, "Lawrence Berkeley National Laboratory"},
+    {98, "Cf", "Californium", 251, 's', 12, 7, 1, 900, 1470, 1950, "Lawrence Berkeley National Laboratory"},
+    {99, "Es", "Einsteinium", 252, 's', 13, 7, 1, 860, 996, 1952, "Lawrence Berkeley National Laboratory"},
+    {100, "Fm", "Fermium", 257, 's', 14, 7, 1, 1527, 2270, 1952, "Lawrence Berkeley National Laboratory"},
+    {101, "Md", "Mendelevium", 258, 's', 15, 7, 1, 827, 1097, 1955, "Lawrence Berkeley National Laboratory"},
+    {102, "No", "Nobelium", 259, 's', 16, 7, 1, 827, 1105, 1958, "Lawrence Berkeley National Laboratory"},
+    {103, "Lr", "Lawrencium", 266, 's', 17, 7, 1, 1627, 1627, 1961, "Lawrence Berkeley National Laboratory"},
+    {104, "Rf", "Rutherfordium", 267, 's', 4, 7, 3, 2400, -1, 1969, "Dubna" },
+    {105, "Db", "Dubnium", 270, 's', 5, 7, 3, -1, -1, 1967, "Dubna" },
+    {106, "Sg", "Seaborgium", 271, 's', 6, 7, 3, -1, -1, 1974, "Berkeley" },
+    {107, "Bh", "Bohrium", 270, 's', 7, 7, 3, -1, -1, 1981, "Darmstadt" },
+    {108, "Hs", "Hassium", 277, 's', 8, 7, 3, -1, -1, 1984, "Darmstadt" },
+    {109, "Mt", "Meitnerium", 278, 's', 9, 7, 3, -1, -1, 1982, "Darmstadt" },
+    {110, "Ds", "Darmstadtium", 281, 's', 10, 7, 3, -1, -1, 1994, "Darmstadt" },
+    {111, "Rg", "Roentgenium", 282, 's', 11, 7, 3, -1, -1, 1994, "Darmstadt" },
+    {112, "Cn", "Copernicium", 285, 's', 12, 7, 3, -1, -1, 1996, "Darmstadt" },
+    {113, "Nh", "Nihonium", 286, 's', 13, 7, 2, -1, -1, 2003, "RIKEN" },
+    {114, "Fl", "Flerovium", 289, 's', 14, 7, 2, -1, -1, 1998, "Dubna" },
+    {115, "Mc", "Moscovium", 290, 's', 15, 7, 2, -1, -1, 2003, "Dubna" },
+    {116, "Lv", "Livermorium", 293, 's', 16, 7, 2, -1, -1, 2000, "Dubna" },
+    {117, "Ts", "Tennessine", 294, 's', 17, 7, 2, -1, -1, 2010, "Dubna" },
+    {118, "Og", "Oganesson", 294, 'g', 18, 7, 2, -1, -1, 2002, "Dubna" }
+};
+
+
+void setColor(int colorCode)
+{
+    /*
+
+Code	Color	Example
+1	Blue	setColor(1);
+2	Green	setColor(2);
+3	Cyan	setColor(3);
+4	Red	setColor(4);
+5	Magenta	setColor(5);
+6	Yellow	setColor(6);
+7	White (Default)	setColor(7);
+8	Gray	setColor(8);
+9	Bright Blue	setColor(9);
+10	Bright Green	setColor(10);
+11	Bright Cyan	setColor(11);
+12	Bright Red	setColor(12);
+13	Bright Magenta	setColor(13);
+14	Bright Yellow	setColor(14);
+15	Bright White	setColor(15);
+
+    */
+
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hConsole, colorCode);
 }
 
-//color cheat sheet
-//setColor(2); green
-//setrColor(12); red
-//setColor(15); white
-//setColor(0x0E); WARNING yellow
-//setColor(13); light magenta
-//setColor(1); blue
-//setolor(11); light cyan
-//setColor(14); yellow
-
-
-void printElement(int atomicNum, string symbol, int color)
+void printBracket(int i)
 {
-    setColor(color);
-    cout << "[ " << setw(3) << atomicNum << "-" << left << setw(3) << symbol << " ]";
-    setColor(15); // Reset to default color
+    // Format: [ X-Y ] where X is atomic number, Y is symbol
+    char buffer[9]; // 8 chars + null terminator
+    snprintf(buffer, sizeof(buffer), "[%2d-%-2s]", elements[i].atomicNum, elements[i].symbol);
 
+    // Ensure the output is exactly 8 characters
+    cout << string(buffer).substr(0, 8);
 }
 
-// Function to print the periodic table
-void printPeriodicTable()
+void printMenuPeriodicTable()
 {
-    cout << "+" << string(206, '-') << "+" << endl;
-    cout << "|" << string(50, ' ') << "Periodic Table of Elements by Atomic Number & Symbol (colors 5 pts Xtra credits)" << string(76, ' ') << "|" << endl;
+    /*
 
-    // row 1
-    cout << "|" << string(3, ' ');
-    printElement(1, "H", 1); // 1 = blue
-    printElement(2, "He", 12); // 12 = light red
-    cout << string(181, ' ') << "|" << endl;
+Code	Color	Example
+1	Blue	setColor(1);
+2	Green	setColor(2);
+3	Cyan	setColor(3);
+4	Red	setColor(4);
+5	Magenta	setColor(5);
+6	Yellow	setColor(6);
+7	White (Default)	setColor(7);
+8	Gray	setColor(8);
+9	Bright Blue	setColor(9);
+10	Bright Green	setColor(10);
+11	Bright Cyan	setColor(11);
+12	Bright Red	setColor(12);
+13	Bright Magenta	setColor(13);
+14	Bright Yellow	setColor(14);
+15	Bright White	setColor(15);
 
-    // row 2
-    cout << "|" << string(3, ' ');
-    printElement(3, "Li", 11); // 11 = light cyan
-    printElement(4, "Be", 12);
-    cout << string(114, ' ');
-    printElement(5, "B", 14);  // 14 = yellow
-    printElement(6, "C", 1);
-    printElement(7, "N", 1);
-    printElement(8, "O", 1);
-    printElement(9, "F", 1);
-    printElement(10, "Ne", 12);
-    cout << string(1, ' ') << "|" << endl;
+    */
 
-    //row3
-    cout << "|" << string(3, ' ');
-    printElement(11, "Na", 11);
-    printElement(12, "Mg", 12);
-    cout << string(114, ' ');
-    printElement(13, "Al", 2); //2 = green
-    printElement(14, "Si", 14);
-    printElement(15, "P", 1);
-    printElement(16, "S", 1);
-    printElement(17, "Cl", 1);
-    printElement(18, "Ar", 12);
-    cout << string(1, ' ') << "|" << endl;
+    cout << "\n\t" << char(201) << string(160, char(205)) << char(187);
 
-    //row4
-    cout << "|" << string(3, ' ');
-    printElement(19, "K", 11);
-    printElement(20, "Ca", 12);
-    printElement(21, "Sc", 13); //13 = light magenta
-    cout << string(4, ' ');
-    printElement(22, "Ti", 13);
-    printElement(23, "V", 13);
-    printElement(24, "Cr", 13);
-    printElement(25, "Mn", 13);
-    printElement(26, "Fe", 13);
-    printElement(27, "Co", 13);
-    printElement(28, "Ni", 13);
-    printElement(29, "Cu", 13);
-    printElement(30, "Zn", 13);
-    printElement(31, "Ga", 2);
-    printElement(32, "Ge", 14);
-    printElement(33, "As", 14);
-    printElement(34, "Se", 1);
-    printElement(35, "Br", 1);
-    printElement(36, "Kr", 12);
-    cout << string(1, ' ') << "|" << endl;
+    cout << "\n\t" << char(186) << string(40, char(32)) << "Periodic Table of Elements by Atomic Number & Symbol(colors 5 pts Xtra credits) " << string(40, char(32)) << char(186);
 
-    //row5
-    cout << "|" << string(3, ' ');
-    printElement(37, "Rb", 11);
-    printElement(38, "Sr", 12);
-    printElement(39, "Y", 13);
-    cout << string(4, ' ');
-    printElement(40, "Zr", 13);
-    printElement(41, "Nb", 13);
-    printElement(42, "Mo", 13);
-    printElement(43, "Tc", 13);
-    printElement(44, "Ru", 13);
-    printElement(45, "Rh", 13);
-    printElement(46, "Pd", 13);
-    printElement(47, "Ag", 13);
-    printElement(48, "Cd", 13);
-    printElement(49, "In", 2);
-    printElement(50, "Sn", 2);
-    printElement(51, "Sb", 14);
-    printElement(52, "Te", 14);
-    printElement(53, "I", 1);
-    printElement(54, "Xe", 12);
-    cout << string(1, ' ') << "|" << endl;
+    //Period 1
+    cout << "\n\t" << char(186) << string(8, char(32));
+    setColor(9);
+    printBracket(0);
+    cout << string(130, char(32));
+    setColor(12);
+    printBracket(1);
+    setColor(15);
+    cout << string(8, char(32)) << char(186);
 
-    //row6
-    cout << "|" << string(3, ' ');
-    printElement(55, "Cs", 11);
-    printElement(56, "Ba", 12);
-    printElement(57, "La", 11);
-    cout << "---" << "+";
-    printElement(72, "Hf", 13);
-    printElement(73, "Ta", 13);
-    printElement(74, "W", 13);
-    printElement(75, "Re", 13);
-    printElement(76, "Os", 13);
-    printElement(77, "Ir", 13);
-    printElement(78, "Pt", 13);
-    printElement(79, "Au", 13);
-    printElement(80, "Hg", 13);
-    printElement(81, "Tl", 2);
-    printElement(82, "Pb", 2);
-    printElement(83, "Bi", 2);
-    printElement(84, "Po", 2);
-    printElement(85, "At", 2);
-    printElement(86, "Rn", 12);
-    cout << string(1, ' ') << "|" << endl;
+    //Period 2
+    cout << "\n\t" << char(186) << string(8, char(32));
+    setColor(11);
+    printBracket(2);
+    setColor(12);
+    printBracket(3);
+    cout << string(88, char(32));
+    setColor(14);
+    printBracket(4);
+    setColor(9);
+    printBracket(5);
+    printBracket(6);
+    printBracket(7);
+    printBracket(8);
+    setColor(12);
+    printBracket(9);
+    setColor(15);
+    cout << string(8, char(32)) << char(186);
+
+    //Period 3
+    cout << "\n\t" << char(186) << string(8, char(32));
+    setColor(11);
+    printBracket(10);
+    setColor(12);
+    printBracket(11);
+    cout << string(88, char(32));
+    setColor(10);
+    printBracket(12);
+    setColor(14);
+    printBracket(13);
+    setColor(9);
+    printBracket(14);
+    printBracket(15);
+    printBracket(16);
+    setColor(12);
+    printBracket(17);
+    setColor(15);
+    cout << string(8, char(32)) << char(186);
+
+    //Period 4
+    cout << "\n\t" << char(186) << string(8, char(32));
+    setColor(11);
+    printBracket(18);
+    setColor(12);
+    printBracket(19);
+    setColor(13);
+    printBracket(20);
+    cout << string(18, char(32));
+    printBracket(21);
+    printBracket(22);
+    printBracket(23);
+    printBracket(24);
+    printBracket(25);
+    printBracket(26);
+    printBracket(27);
+    printBracket(28);
+    printBracket(29);
+    setColor(10);
+    printBracket(30);
+    setColor(14);
+    printBracket(31);
+    printBracket(32);
+    setColor(9);
+    printBracket(33);
+    printBracket(34);
+    setColor(12);
+    printBracket(35);
+    setColor(15);
+    cout << string(8, char(32)) << char(186);
+
+    //Period 5
+    cout << "\n\t" << char(186) << string(8, char(32));
+    setColor(11);
+    printBracket(36);
+    setColor(12);
+    printBracket(37);
+    setColor(13);
+    printBracket(38);
+    cout << string(18, char(32));
+    printBracket(39);
+    printBracket(40);
+    printBracket(41);
+    printBracket(42);
+    printBracket(43);
+    printBracket(44);
+    printBracket(45);
+    printBracket(46);
+    printBracket(47);
+    setColor(10);
+    printBracket(48);
+    printBracket(49);
+    setColor(14);
+    printBracket(50);
+    printBracket(51);
+    setColor(9);
+    printBracket(52);
+    setColor(12);
+    printBracket(53);
+    setColor(15);
+    cout << string(8, char(32)) << char(186);
+
+    //Period 6
+    cout << "\n\t" << char(186) << string(8, char(32));
+    setColor(11);
+    printBracket(54);
+    setColor(12);
+    printBracket(55);
+    setColor(11);
+    printBracket(56);
+    setColor(15);
+    cout << char(196) << char(191) << string(16, char(32));
+    setColor(13);
+    printBracket(71);
+    printBracket(72);
+    printBracket(73);
+    printBracket(74);
+    printBracket(75);
+    printBracket(76);
+    printBracket(77);
+    printBracket(78);
+    printBracket(79);
+    setColor(10);
+    printBracket(80);
+    printBracket(81);
+    printBracket(82);
+    printBracket(83);
+    printBracket(84);
+    setColor(12);
+    printBracket(85);
+    setColor(15);
+    cout << string(8, char(32)) << char(186);
+
+    //Period 7
+    cout << "\n\t" << char(186) << string(8, char(32));
+    setColor(11);
+    printBracket(86);
+    setColor(12);
+    printBracket(87);
+    printBracket(88);
+    setColor(15);
+    cout << char(191) << char(179) << string(1, char(32));
+    setColor(13);
+    printBracket(103);
+    printBracket(104);
+    printBracket(105);
+    printBracket(106);
+    printBracket(107);
+    setColor(8);
+    printBracket(108);
+    printBracket(109);
+    printBracket(110);
+    printBracket(111);
+    printBracket(112);
+    printBracket(113);
+    printBracket(114);
+    printBracket(115);
+    printBracket(115);
+    printBracket(117);
+    setColor(15);
+    cout << string(8, char(32)) << char(186);
 
 
-    // Row 7 (with "corner" connection from Ra to Ac)
-    cout << "|" << string(3, ' ');
-    printElement(87, "Fr", 11);
-    printElement(88, "Ra", 12);
-    printElement(89, "Ac", 12);
-    cout << "-" << "+";
-    cout << string(1, ' ') << "|";
-    printElement(104, "Rf", 13);
-    printElement(105, "Db", 13);
-    printElement(106, "Sg", 13);
-    printElement(107, "Bh", 13);
-    printElement(108, "Hs", 13);
-    printElement(109, "Mt", 8);
-    printElement(110, "Ds", 8);
-    printElement(111, "Rg", 8);
-    printElement(112, "Cn", 8);
-    printElement(113, "Nh", 8);
-    printElement(114, "Fl", 8);
-    printElement(115, "Mc", 8);
-    printElement(116, "Lv", 8);
-    printElement(117, "Ts", 8);
-    printElement(118, "Og", 8);
-    cout << string(1, ' ') << "|" << endl;
+    //Line before Period 8
+    cout << "\n\t" << char(186) << string(29, char(32)) << char(179) << char(179) << string(129, char(32)) << char(186);
 
-    //row8
-    cout << "|" << string(37, ' ') << "| |";
-    cout << string(166, ' ') << "|" << endl;
+    //Period 8
+    cout << "\n\t" << char(186) << string(29, char(32)) << char(179) << char(192) << string(16, char(196));
+    setColor(11);
+    printBracket(57);
+    printBracket(58);
+    printBracket(59);
+    printBracket(60);
+    printBracket(61);
+    printBracket(62);
+    printBracket(63);
+    printBracket(64);
+    printBracket(65);
+    printBracket(66);
+    printBracket(67);
+    printBracket(68);
+    printBracket(69);
+    printBracket(70);
+    setColor(15);
+    cout << string(15, char(32)) << char(186);
 
-    //row9
-    cout << "|" << string(37, ' ') << "| +-";
-    printElement(58, "Ce", 11);
-    printElement(59, "Pr", 11);
-    printElement(60, "Nd", 11);
-    printElement(61, "Pm", 11);
-    printElement(62, "Sm", 11);
-    printElement(63, "Eu", 11);
-    printElement(64, "Gd", 11);
-    printElement(65, "Tb", 11);
-    printElement(66, "Dy", 11);
-    printElement(67, "Ho", 11);
-    printElement(68, "Er", 11);
-    printElement(69, "Tm", 11);
-    printElement(70, "Yb", 11);
-    printElement(71, "Lu", 11);
-    cout << string(11, ' ') << "|" << endl;
+    //Period 9
+    cout << "\n\t" << char(186) << string(29, char(32)) << char(192) << string(17, char(196));
+    setColor(10);
+    printBracket(89);
+    printBracket(90);
+    printBracket(91);
+    printBracket(92);
+    printBracket(93);
+    printBracket(94);
+    printBracket(95);
+    printBracket(96);
+    printBracket(97);
+    printBracket(98);
+    printBracket(99);
+    printBracket(100);
+    printBracket(101);
+    printBracket(102);
+    setColor(15);
+    cout << string(11, char(32)) << char(186);
 
-    //row10
-    cout << "|" << string(37, ' ') << "+---";
-    printElement(90, "Th", 2);
-    printElement(91, "Pa", 2);
-    printElement(92, "U", 2);
-    printElement(93, "Np", 2);
-    printElement(94, "Pu", 2);
-    printElement(95, "Am", 2);
-    printElement(96, "Cm", 2);
-    printElement(97, "Bk", 2);
-    printElement(98, "Cf", 2);
-    printElement(99, "Es", 2);
-    printElement(100, "Fm", 2);
-    printElement(101, "Md", 2);
-    printElement(102, "No", 2);
-    printElement(103, "Lr", 2);
-    cout << string(11, ' ') << "|";
+    cout << "\n\t" << char(186) << string(160, char(32)) << char(186);
 
-    //last row
-    cout << endl;
-    cout << "+" << string(206, '-') << "+" << endl;
+    cout << "\n\t" << char(200) << string(160, char(205)) << char(188);
 }
 
 
@@ -252,7 +465,7 @@ int main()
     do
     {
         system("cls");
-        printPeriodicTable(); //displays the periodic table title
+        printMenuPeriodicTable();
         cout << "\n\tCMPR121: Exam#1: Implementation using Dynamic Array, string/C-string, struct, and Binary File By YOURNAME "; //make sure to change to your name
         cout << "\n\t" << string(80, char(205));
         cout << "\n\t A) Advance Binary Data File (Chapter#12)";
@@ -270,7 +483,7 @@ int main()
         case 'A': sectionA(); break; 
         case 'B': sectionB(); break; 
         case 'C': sectionC(); break; 
-            //case 'X': xTraCredit(); break; 
+        case 'X': optionX(); break; 
         default:
             SetConsoleTextAttribute(color, 12);
             cout << "\n\tERROR: Invalid option.\n";
@@ -292,7 +505,10 @@ void displayAllElements(Element element)
     string blockTypeName = "unknown";
     char block = toupper(element.blockType); 
     string discoveryYear;
-    HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+    string stateTypeName = "unknown";
+    char stateType = toupper(element.stateType);
+   HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+
 
     kelvinm = element.meltingPoint + 273.15; 
     farenheitm = (element.meltingPoint * 1.8) + 32; 
@@ -318,6 +534,25 @@ void displayAllElements(Element element)
         break;
     }
 
+    switch (stateType)
+    {
+    case 'L':
+        stateTypeName = "liquid";
+        break;
+    case 'S':
+        stateTypeName = "solid";
+        break;
+    case 'G':
+        stateTypeName = "gas";
+        break;
+    case 'U':
+        stateTypeName = "unknown";
+        break;
+    default:
+        break;
+    }
+
+
     SetConsoleTextAttribute(color, 2);
     cout << "\n\tAtomic # " << right << setw(8) << ": " << element.atomicNum; 
     cout << "\n\tSymbol " << right << setw(10) << ": " << element.symbol; 
@@ -339,7 +574,7 @@ void displayAllElements(Element element)
         cout << element.discoveryYear << "\n";
     }
     cout << "\tDiscovered by " << right << setw(3) << ": " << element.discoveredBy << "\n\n";
-    SetConsoleTextAttribute(color, 15);
+    setColor(15);
 }
 
 
@@ -353,6 +588,8 @@ void displayAllElements(Element element[], int size)
         float farenheitb = 0.0;
         string blockTypeName = "unknown";
         char block = toupper(element[i].blockType); 
+        string stateTypeName = "unknown";
+        char stateType = toupper(element[i].stateType);
         string discoveryYear;
         HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
 
@@ -381,7 +618,26 @@ void displayAllElements(Element element[], int size)
             break;
         }
 
+        switch (stateType)
+        {
+        case 'L':
+            stateTypeName = "liquid";
+            break;
+        case 'S':
+            stateTypeName = "solid";
+            break;
+        case 'G':
+            stateTypeName = "gas";
+            break;
+        case 'U':
+            stateTypeName = "unknown";
+            break;
+        default:
+            break;
+        }
+
         SetConsoleTextAttribute(color, 2);
+        cout << "\tIndex[" << i << "]\n";
         cout << "\tAtomic # " << right << setw(8) << ": " << element[i].atomicNum << "\n"; 
         cout << "\tSymbol " << right << setw(10) << ": " << element[i].symbol << "\n"; 
         cout << "\tName " << right << setw(12) << ": " << element[i].name << "\n"; 
@@ -416,6 +672,8 @@ void displayAllElements(const vector<Element>& element)
         float farenheitb = 0.0;
         string blockTypeName = "unknown";
         char block = toupper(element[i].blockType); 
+        string stateTypeName = "unknown";
+        char stateType = toupper(element[i].stateType);
         string discoveryYear;
         HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
 
@@ -442,8 +700,26 @@ void displayAllElements(const vector<Element>& element)
         default:
             break;
         }
+        switch (stateType)
+        {
+        case 'L':
+            stateTypeName = "liquid";
+            break;
+        case 'S':
+            stateTypeName = "solid";
+            break;
+        case 'G':
+            stateTypeName = "gas";
+            break;
+        case 'U':
+            stateTypeName = "unknown";
+            break;
+        default:
+            break;
+        }
 
         SetConsoleTextAttribute(color, 2);
+        cout << "\tIndex[" << i << "]\n";
         cout << "\tAtomic # " << right << setw(8) << ": " << element[i].atomicNum << "\n"; 
         cout << "\tSymbol " << right << setw(10) << ": " << element[i].symbol << "\n"; 
         cout << "\tName " << right << setw(12) << ": " << element[i].name << "\n"; 
@@ -470,7 +746,6 @@ void displayAllElements(const vector<Element>& element)
 
 void sectionA_fileElementDisplay(fstream& binaryFile)
 {
-    system("cls"); //clears the screen
     HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
     Element element; //holds information about an element 
 
@@ -492,7 +767,7 @@ void sectionA_fileElementDisplay(fstream& binaryFile)
 
 void sectionA_addElement(fstream& binaryFile, string fileBin, long atomicNum)
 {
-    Element element; //element elements;
+    Element element; 
     HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
 
     element.atomicNum = static_cast <short> (atomicNum); 
@@ -612,9 +887,8 @@ void sectionA_elementSearch(Element element, fstream& binaryFile, string fileBin
     HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
 
     SetConsoleTextAttribute(color, 2);
-    cout << "\n\tCONFIRMATION: The Element with Atomic # (" << element.atomicNum << ") is found at location #" << count << "\n\n";
+    cout << "\n\tCONFIRMATION: The Element with Atomic # (" << element.atomicNum << ") is found at location #" << count << "\n\n"; //cout << "\nCONFIRMATION: The Element with Atomic # (" << elements.atomicNum << ") is found at location #" << count << "\n";
     SetConsoleTextAttribute(color, 15);
-
 }
 
 void sectionA() 
@@ -662,7 +936,7 @@ void sectionA()
             break;
         case 2:
             system("cls"); //clears the screen
-            cout << "\tDirectly add an element into the binary data file... \n\n";
+            cout << "\tDirectly add an element into the binary data file... \n";
 
             binaryFile.open(fileBin, ios::in | ios::out | ios::binary | ios::app);
             if (fileBin.empty())
@@ -673,8 +947,8 @@ void sectionA()
             }
             else
             {
-                system("cls");
-                cout << "\n\tAdding a new element information\n\n";
+
+                cout << "\n\tAdding a new element information\n";
                 recNum = static_cast <long> (inputInteger("\n\tSpecify the Atomic # : ", 1, 118));
                 binaryFile.read(reinterpret_cast<char*>(&element), sizeof(element));
                 bool findNum = false;
@@ -809,7 +1083,7 @@ int  sectionB_fileReadnStore(Element*& element, int& SIZE)
     if (!myDataFileB1.is_open())
     {
         setColor(12);
-        cout << "\n\tERROR: FILE " << fileNamePrompt << " CANNOT BE FOUND.";
+        cout << "\n\tERROR: file " << fileNamePrompt << " cannot be found.";
         setColor(15);
         return 1;
 
@@ -840,7 +1114,7 @@ int  sectionB_fileReadnStore(Element*& element, int& SIZE)
 
     myDataFileB1.close();
     setColor(2);
-    cout << "\tCONFIRMATION: Data from binary file," << fileNamePrompt << "has been retrieved and stored into dynamic array.";
+    cout << "\n\tCONFIRMATION: Data from binary file," << fileNamePrompt << "has been retrieved and stored into dynamic array.";
     setColor(15);
 
     return 0;
@@ -867,7 +1141,7 @@ int sectionB_displayElement(Element*& element, int& SIZE)
     displayAllElements(element, SIZE); 
 
     setColor(2);
-    cout << "\n * Current size of the dynamic array : " << SIZE;
+    cout << "\n\t * Current size of the dynamic array : " << SIZE;
     setColor(15);
 
     return 0;
@@ -896,8 +1170,6 @@ int sectionB_addElement(Element*& element, int& SIZE)
         }
         delete[] element; 
 
-
-      
         newElements[SIZE].atomicNum = testAtomicNum;
         strncpy_s(newElements[SIZE].symbol, inputString("\tSpecify the Element Symbol :", false).c_str(), sizeof(newElements[SIZE].symbol) - 1);
         strncpy_s(newElements[SIZE].name, inputString("\tSpecify the Element Name :", false).c_str(), sizeof(newElements[SIZE].name) - 1);
@@ -926,7 +1198,7 @@ int sectionB_addElement(Element*& element, int& SIZE)
     {
 
 
-        short testAtomicNum = inputInteger("\n\n\tSpecify a new Element Atomic # : ", 1, 118);
+        short testAtomicNum = inputInteger("\n\tSpecify a new Element Atomic # : ", 1, 118);
 
 
         for (int i = 0; i < SIZE; i++)
@@ -934,7 +1206,7 @@ int sectionB_addElement(Element*& element, int& SIZE)
             if (testAtomicNum == element[i].atomicNum) 
             {
                 setColor(12);
-                cout << "\n\n\tERROR: Element with Atomic # " << testAtomicNum << " is already existed. Please perform other valid option.";
+                cout << "\n\tERROR: Element with Atomic # " << testAtomicNum << " is already existed. Please perform other valid option.";
                 setColor(15);
                 return 1;
             }
@@ -967,7 +1239,7 @@ int sectionB_addElement(Element*& element, int& SIZE)
 
 
         SIZE++;
-        element = newElements; //elements = newElements;
+        element = newElements; 
 
         setColor(2);
         cout << "\n\tCONFIRMATION: A new element with Atomic # (" << testAtomicNum << ") has been added into the dynamic array.";
@@ -979,7 +1251,7 @@ int sectionB_addElement(Element*& element, int& SIZE)
 
 // prompt user for changes change if need be
 // the display changes as you adjust the element  
-int sectionB_updateElement(Element*& element, int& SIZE) 
+int sectionB_updateElement(Element*& element, int& SIZE) // maybe not an int //optionB4(element*& elements, int& SIZE)
 {
     system("cls");
 
@@ -998,23 +1270,23 @@ int sectionB_updateElement(Element*& element, int& SIZE)
 
     for (int i = 0; i < SIZE; i++)
     {
-        if (a_num == element[i].atomicNum) 
+        if (a_num == element[i].atomicNum) //if (a_num == elements[i].atomicNum) //this might need adjustment
         {
-            short atomicNumB = element[i].atomicNum; 
+            short atomicNumB = element[i].atomicNum; //short atomicNumB = elements[i].atomicNum;
             char symbolB[3];
-            strncpy_s(symbolB, sizeof(symbolB), element[i].symbol, _TRUNCATE);
+            strncpy_s(symbolB, sizeof(symbolB), element[i].symbol, _TRUNCATE); //strncpy_s(symbolB, sizeof(symbolB), elements[i].symbol, _TRUNCATE);
             char nameB[25];
-            strncpy_s(nameB, sizeof(nameB), element[i].name, _TRUNCATE);
-            float massB = element[i].mass;
-            char stateTypeB = element[i].stateType; 
-            short groupNumB = element[i].groupNum; 
-            short periodNumB = element[i].periodNum;
-            char blockTypeB = element[i].blockType; 
-            float meltingPointB = element[i].meltingPoint;
-            float boilingPointB = element[i].boilingPoint; 
-            short discoveryYearB = element[i].discoveryYear;
+            strncpy_s(nameB, sizeof(nameB), element[i].name, _TRUNCATE); //strncpy_s(nameB, sizeof(nameB), elements[i].name, _TRUNCATE);
+            float massB = element[i].mass; //float massB = elements[i].mass;
+            char stateTypeB = element[i].stateType; //char stateTypeB = elements[i].stateType;
+            short groupNumB = element[i].groupNum; //short groupNumB = elements[i].groupNum;
+            short periodNumB = element[i].periodNum; //short periodNumB = elements[i].periodNum;
+            char blockTypeB = element[i].blockType; //char blockTypeB = elements[i].blockType;
+            float meltingPointB = element[i].meltingPoint; //float meltingPointB = elements[i].meltingPoint;
+            float boilingPointB = element[i].boilingPoint; //float boilingPointB = elements[i].boilingPoint;
+            short discoveryYearB = element[i].discoveryYear; //short discoveryYearB = elements[i].discoveryYear;
             char discoveredByB[100];
-            strncpy_s(discoveredByB, sizeof(discoveredByB), element[i].discoveredBy, _TRUNCATE);
+            strncpy_s(discoveredByB, sizeof(discoveredByB), element[i].discoveredBy, _TRUNCATE); //strncpy_s(discoveredByB, sizeof(discoveredByB), elements[i].discoveredBy, _TRUNCATE);
             do
             {
                 float kelvinm = 0.0;
@@ -1052,7 +1324,7 @@ int sectionB_updateElement(Element*& element, int& SIZE)
                 }
 
                 SetConsoleTextAttribute(color, 2);
-                cout << setw(20) << left << "\n\tAtomic #" << ": " << left << element[i].atomicNum; 
+                cout << setw(20) << left << "\n\tAtomic #" << ": " << left << element[i].atomicNum; //cout << setw(20) << left << "\n\tAtomic #" << ": " << left << elements[i].atomicNum;
                 cout << setw(20) << left << "\n\tSymbol " << ": " << left << symbolB;
                 cout << setw(20) << left << "\n\tName " << ": " << left << nameB;
                 cout << setw(20) << left << "\n\tMass" << setprecision(3) << fixed << ": " << left << massB << " u";
@@ -1124,8 +1396,8 @@ int sectionB_updateElement(Element*& element, int& SIZE)
 
                 case 0:
                     element[i].symbol;
-                    strncpy_s(element[i].symbol, symbolB, sizeof(element[i].symbol) - 1);
-                    element[i].name;
+                    strncpy_s(element[i].symbol, symbolB, sizeof(element[i].symbol) - 1); 
+                    element[i].name; 
                     strncpy_s(element[i].name, nameB, sizeof(nameB) - 1); 
                     element[i].mass = massB; 
                     element[i].stateType = stateTypeB; 
@@ -1140,7 +1412,7 @@ int sectionB_updateElement(Element*& element, int& SIZE)
                     strncpy_s(element[i].discoveredBy, discoveredByB, sizeof(discoveredByB) - 1); 
 
                     setColor(2);
-                    cout << "\nCONFIRMATION: Element with Atomic # " << element[i].atomicNum << " has been updated into the dynamic array.\n"; 
+                    cout << "\nCONFIRMATION: Element with Atomic # " << element[i].atomicNum << " has been updated into the dynamic array.\n";
                     setColor(15);
 
                     return 0; break;
@@ -1372,8 +1644,9 @@ void sectionB()
 int optionC1(vector<Element>& element)
 {
     system("cls");
+    cout << "\n\tRead data from binary file and store into vector...\n";
 
-    string fileNamePrompt = inputString("\n\tSpecify the binary file name to read from: ", false); // prompt user for the file 
+    string fileNamePrompt = inputString("\n\tEnter the binary file name to read from : ", false); // prompt user for the file 
 
     ifstream myDataFileB1(fileNamePrompt, ios::binary);
 
@@ -1392,7 +1665,6 @@ int optionC1(vector<Element>& element)
 
 
     // Calculate the number of elements the file can contain
-
     int numElements = myDataFileB1Size / sizeof(Element);
 
     // Resize the vector to hold the correct number of elements
@@ -1414,21 +1686,18 @@ int optionC1(vector<Element>& element)
 
     myDataFileB1.close();
     setColor(2);
-    cout << "\n\tCONFIRMATION: Data from binary file, " << fileNamePrompt << " has been retrieved and stored into the vector.\n\n";
+    cout << "\n\tCONFIRMATION: Data from binary file, " << fileNamePrompt << ", has been retrieved and stored into the vector.\n\n";
     setColor(15);
 
     return 0;
 }
 
- 
 int optionC2(vector<Element>& element) // maybe not an int 
 {
     system("cls");
 
-
     if (element.data() == 0)
     {
-        cout << "\n\n\tDisplay ALL element(s) from the vector...\n";
         setColor(12);
         cout << "\n\tERROR: The vector is empty. Therfore cannot display any element.\n";
         setColor(15);
@@ -1439,9 +1708,7 @@ int optionC2(vector<Element>& element) // maybe not an int
 
     cout << "\n\n\tDisplay ALL element(s) from the vector...\n\n";
 
-
     displayAllElements(element);
-
 
 
     setColor(2);
@@ -1453,6 +1720,8 @@ int optionC2(vector<Element>& element) // maybe not an int
 
 int optionC3(vector<Element>& element)
 {
+
+
     system("cls");
 
     cout << "\tAdd a new element to the vector...\n\n";
@@ -1471,7 +1740,6 @@ int optionC3(vector<Element>& element)
 
     for (size_t i = 0; i < element.size(); i++)
     {
-
         if (atomicNumC == element[i].atomicNum)
         {
             setColor(12);
@@ -1490,9 +1758,10 @@ int optionC3(vector<Element>& element)
 
 
     Element newElements;
-
+    //changed it to one question
+    newElements.atomicNum = atomicNumC;
     strncpy_s(newElements.symbol, inputString("\tSpecify the Element Symbol : ", false).c_str(), sizeof(newElements.symbol) - 1);
-    strncpy_s(newElements.name, sizeof(25), inputString("\tSpecify the Element Name :", false).c_str(), sizeof(newElements.name) - 1);
+    strncpy_s(newElements.name, inputString("\tSpecify the Element Name :", false).c_str(), sizeof(newElements.name) - 1);
     newElements.mass = inputDouble("\tSpecify the Element Mass : ", true);
     newElements.stateType = (toupper(inputChar("\tSpecify the Element State type (S-solid, L-liquid, G-gas, or U-unknown) : ", static_cast<string>("slgu"))));
     newElements.groupNum = inputInteger("\tSpecify the Element Group # (0 = unknown or 1...18) : ", 0, 18);
@@ -1520,7 +1789,7 @@ int optionC4(vector<Element>& element)
     system("cls");
     cout << "\tUpdating an existing element from the vector...\n";
 
- 
+
     if (element.data() == 0)
     {
         setColor(12);
@@ -1532,10 +1801,10 @@ int optionC4(vector<Element>& element)
     bool found = false;
     short a_num = inputInteger("\n\n\tSpecify an existing Element Atomic # :", 1, 118);
 
-  
+
     for (size_t i = 0; i < element.size(); i++)
     {
-  
+
         if (a_num == element[i].atomicNum) //this might need adjustment 
         {
 
@@ -1563,8 +1832,10 @@ int optionC4(vector<Element>& element)
                 float farenheitb = 0.0;
                 string blockTypeName = "unknown";
                 char block = toupper(blockTypeB);
+                string stateTypeName = "unknown";
+                char stateType = toupper(element[i].stateType);
                 string discoveryYear;
- 
+
 
                 kelvinm = meltingPointB + 273.15;
                 farenheitm = (meltingPointB * 1.8) + 32;
@@ -1591,10 +1862,30 @@ int optionC4(vector<Element>& element)
                     break;
                 }
 
+                switch (stateType)
+                {
+                case 'L':
+                    stateTypeName = "liquid";
+                    break;
+                case 'S':
+                    stateTypeName = "solid";
+                    break;
+                case 'G':
+                    stateTypeName = "gas";
+                    break;
+                case 'U':
+                    stateTypeName = "unknown";
+                    break;
+                default:
+                    break;
+                }
 
 
 
-                 setColor(2);
+
+
+                setColor(2);
+                cout << "\n\tIndex[" << i << "]";
                 cout << setw(20) << left << "\n\tAtomic #" << ": " << left << element[i].atomicNum;
                 cout << setw(20) << left << "\n\tSymbol " << ": " << left << symbolB; // might need to checck if the input is the same 
                 cout << setw(20) << left << "\n\tName " << ": " << left << nameB;
@@ -1672,7 +1963,7 @@ int optionC4(vector<Element>& element)
                 case 11: strncpy_s(discoveredByB, inputString("\tSpecify a new Element Discoverred By :", boolalpha).c_str(), sizeof(discoveredByB) - 1); break;
 
                 case 0:
- 
+
                     element[i].symbol; // this might not be needed as its passed argument 
                     strncpy_s(element[i].symbol, sizeof(element[i].symbol), symbolB, _TRUNCATE);
 
@@ -1697,13 +1988,15 @@ int optionC4(vector<Element>& element)
 
                     return 0; break;
 
+
+
                 default:
                     setColor(12);
                     cout << "\n\tERROR: Invalid Option.\n";
                     setColor(15);
                 }
                 system("cls");
-               //system("pause"); //looks like you skipped the system pause 
+                //system("pause"); //looks like you skipped the system pause 
             } while (true);
 
             found = true;
@@ -1726,15 +2019,13 @@ int optionC5(vector<Element>& element)
     system("cls");
     cout << "\tSort the vector by Name in ascending order...\n";
 
-
     if (element.data() == 0)
     {
         setColor(12);
-        cout << "\n\tERROR: Vector is empty. Therefore, sort cannot be completed.\n\n";
+        cout << "\n\tERROR: Vector is empty. Therefore, sort cannot be completed.\n";
         setColor(15);
         return 1;
     }
-
 
     sort(element.begin(), element.end(), sortAscendingVector);
 
@@ -1743,17 +2034,14 @@ int optionC5(vector<Element>& element)
     setColor(15);
 }
 
-
 int binarySearchV(const vector<Element>& element, const char* target)
 {
     int left = 0;
-
     int right = element.size() - 1;
 
     while (left <= right)
     {
         int mid = left + (right - left) / 2;
-
 
         int cmp = strcmp(element[mid].name, target);
         if (cmp == 0)
@@ -1771,7 +2059,6 @@ int binarySearchV(const vector<Element>& element, const char* target)
     }
     return -1;
 }
-
 
 int optionC6(vector<Element>& element)
 {
@@ -1828,7 +2115,6 @@ int optionC7(vector<Element>& element)
     system("cls");
     cout << "\t\nWriting elements from the vector to binary data file...\n";
 
-
     if (element.data() == 0)
     {
         setColor(12);
@@ -1854,7 +2140,7 @@ int optionC7(vector<Element>& element)
 void sectionC()
 {
     int SIZE = 0;
-    
+
     vector <Element> vectorOfElements(SIZE);
 
     do
@@ -1868,7 +2154,7 @@ void sectionC()
         cout << "\n\t 4) Update an existing element from the vector";
         cout << "\n\t 5) Sort the vector by Name  in ascending order";
         cout << "\n\t 6) Binary search for an element by Name";
-        cout << "\n\t 7) Store elements from the vector into the binary data file"; 
+        cout << "\n\t 7) Store elements from the vector into the binary data file";
         cout << "\n\t" << string(100, char(205));
         cout << "\n";
         cout << "\n\t 0) Return to Main Menu"; // this option you just had return 0. but this looks better with return to main 
@@ -1891,4 +2177,46 @@ void sectionC()
 
         system("pause");
     } while (true);
+}
+
+
+void optionX()
+{
+    system("cls");
+
+
+    setColor(15);
+    cout << "\n\tSize of the Element structure and its members (NOT HARDCODED)...";
+    setColor(2);
+    cout << "\n\tElement                (total)    : " << sizeof(Element) << " bytes";
+    cout << "\n\t\tAtomic #       (short)    :   " << sizeof(Element::atomicNum) << " bytes";
+    cout << "\n\t\tSymbol         (c-string) :   " << sizeof(Element::symbol) << " bytes";
+    cout << "\n\t\tName           (c-string) :  " << sizeof(Element::name) << " bytes";
+    cout << "\n\t\tMass           (float)    :   " << sizeof(Element::mass) << " bytes";
+    cout << "\n\t\tState type     (char)     :   " << sizeof(Element::stateType) << " byte";
+    cout << "\n\t\tGroup #        (short)    :   " << sizeof(Element::groupNum) << " bytes";
+    cout << "\n\t\tPeriod #       (short)    :   " << sizeof(Element::periodNum) << " bytes";
+    cout << "\n\t\tBlock type     (short)    :   " << sizeof(Element::blockType) << " bytes";
+    cout << "\n\t\tMelting point  (float)    :   " << sizeof(Element::meltingPoint) << " bytes";
+    cout << "\n\t\tBoiling point  (float)    :   " << sizeof(Element::boilingPoint) << " bytes";
+    cout << "\n\t\tDiscovery year (short)    :   " << sizeof(Element::discoveryYear) << " bytes";
+    cout << "\n\t\tDiscoverred by (c-string) : " << sizeof(Element::discoveredBy) << " bytes\n\n\t";
+    setColor(15);
+
+    /*
+    FOR REFERENCE
+
+    char symbol[3];          // Symbol (H)
+    char name[25];           // Name (Hydrogen)
+    float mass;              // Atomic mass
+    char stateType;          // State type ('s' for solid, 'l' for liquid, 'g' for gas)
+    short groupNumber;       // Group number
+    short periodNumber;      // Period number
+    short blockType;         // Block type (1 for s-block, 2 for p-block, 3 for d-block, 4 for f-block)
+    float meltingPoint;      // Melting point in Celsius
+    float boilingPoint;      // Boiling point in Celsius
+    short discoveryYear;     // Discovery year
+    char discoveredBy[100];  // Discovered by
+    */
+
 }
