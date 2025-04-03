@@ -134,52 +134,53 @@ C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(513,36): warning C424
 C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(514,47): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(516,36): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(517,47): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(596,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(597,54): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(599,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(600,54): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(680,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(681,54): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(683,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(684,54): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(752,10): warning C4101: 'numBytes': unreferenced local variable
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(781,39): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(597,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(598,54): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(600,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(601,54): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(681,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(682,54): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(684,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(685,54): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(753,10): warning C4101: 'numBytes': unreferenced local variable
 C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(782,39): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(868,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(871,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1094,26): warning C4244: 'initializing': conversion from 'std::streamoff' to 'int', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1176,45): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1181,53): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(783,39): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(869,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(872,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1095,26): warning C4244: 'initializing': conversion from 'std::streamoff' to 'int', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1177,45): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1182,53): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1230,45): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1235,53): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1236,53): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1302,41): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1303,52): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1305,41): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1306,52): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1379,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1389,52): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1391,52): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1395,107): warning C4305: 'argument': truncation from 'std::ios_base &(__cdecl *)(std::ios_base &)' to 'bool'
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1533,92): warning C4305: 'argument': truncation from 'std::ios_base &(__cdecl *)(std::ios_base &)' to 'bool'
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1664,26): warning C4244: 'initializing': conversion from 'std::streamoff' to 'int', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1765,35): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1770,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1771,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1756,48): warning C4390: ';': empty controlled statement found; is this the intent?
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1840,41): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1841,52): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1843,41): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1844,52): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1943,89): warning C4305: 'argument': truncation from 'std::ios_base &(__cdecl *)(std::ios_base &)' to 'bool'
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1945,85): warning C4305: 'argument': truncation from 'std::ios_base &(__cdecl *)(std::ios_base &)' to 'bool'
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1947,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1957,52): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1959,52): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1963,107): warning C4305: 'argument': truncation from 'std::ios_base &(__cdecl *)(std::ios_base &)' to 'bool'
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(2040,15): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(2078,85): warning C4305: 'argument': truncation from 'std::ios_base &(__cdecl *)(std::ios_base &)' to 'bool'
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1484,1): warning C4715: 'sectionB_sortbySymbol': not all control paths return a value
-C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(2035,1): warning C4715: 'optionC5': not all control paths return a value
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1183,53): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1232,45): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1237,53): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1238,53): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1306,41): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1307,52): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1309,41): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1310,52): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1385,48): warning C4309: 'argument': truncation of constant value
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1400,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1410,52): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1412,52): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1416,108): warning C4305: 'argument': truncation from 'std::ios_base &(__cdecl *)(std::ios_base &)' to 'bool'
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1554,92): warning C4305: 'argument': truncation from 'std::ios_base &(__cdecl *)(std::ios_base &)' to 'bool'
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1686,26): warning C4244: 'initializing': conversion from 'std::streamoff' to 'int', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1787,35): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1792,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1793,43): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1778,48): warning C4390: ';': empty controlled statement found; is this the intent?
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1862,41): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1863,52): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1865,41): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1866,52): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1964,89): warning C4305: 'argument': truncation from 'std::ios_base &(__cdecl *)(std::ios_base &)' to 'bool'
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1966,85): warning C4305: 'argument': truncation from 'std::ios_base &(__cdecl *)(std::ios_base &)' to 'bool'
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1968,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1978,52): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1980,52): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1984,107): warning C4305: 'argument': truncation from 'std::ios_base &(__cdecl *)(std::ios_base &)' to 'bool'
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(2061,15): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(2099,85): warning C4305: 'argument': truncation from 'std::ios_base &(__cdecl *)(std::ios_base &)' to 'bool'
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(1505,1): warning C4715: 'sectionB_sortbySymbol': not all control paths return a value
+C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\Exam1\main.cpp(2056,1): warning C4715: 'optionC5': not all control paths return a value
   Exam1.vcxproj -> C:\Users\chync\OneDrive\Desktop\EXAM1\EXAM1\x64\Debug\Exam1.exe

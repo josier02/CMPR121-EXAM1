@@ -467,17 +467,16 @@ int main()
         system("cls");
         printMenuPeriodicTable();
         cout << "\n\tCMPR121: Exam#1: Implementation using Dynamic Array, string/C-string, struct, and Binary File By YOURNAME "; //make sure to change to your name
-        cout << "\n\t" << string(80, char(205));
-        cout << "\n\t A) Advance Binary Data File (Chapter#12)";
-        cout << "\n\t B) Dynamic Array (Chapter#9)";
-        cout << "\n\t C) Vector (Chapter#7)";
-        cout << "\n\t X) Xtra credits (5 pts)";
-        cout << "\n\t" << string(100, char(205));
-        cout << "\n\t Q) Quit (terminate) Program";
-        cout << "\n\t" << string(100, char(205));
-        cout << "\n";
+        cout << "\n\t" << string(160, char(205));
+        cout << "\n\t\t A) Advance Binary Data File (Chapter#12)";
+        cout << "\n\t\t B) Dynamic Array (Chapter#9)";
+        cout << "\n\t\t C) Vector (Chapter#7)";
+        cout << "\n\t\t X) Xtra credits (5 pts)";
+        cout << "\n\t" << string(160, char(196));
+        cout << "\n\t\t Q) Quit (terminate) Program";
+        cout << "\n\t" << string(160, char(205)) << "\n";
 
-        switch (toupper(inputChar("\n\tOption: ", static_cast<string>("QABCX"))))
+        switch (toupper(inputChar("\tOption: ", static_cast<string>("QABCX"))))
         {
         case 'Q': exit(0);
         case 'A': sectionA(); break; 
@@ -489,7 +488,7 @@ int main()
             cout << "\n\tERROR: Invalid option.\n";
             SetConsoleTextAttribute(color, 15);
         }
-        cout << "\n\n\t";
+        cout << "\n";
         system("pause");
     } while (true);
 
@@ -498,16 +497,17 @@ int main()
 
 void displayAllElements(Element element) 
 {
+
     float kelvinm = 0.0;
     float farenheitm = 0.0;
     float kelvinb = 0.0;
     float farenheitb = 0.0;
     string blockTypeName = "unknown";
     char block = toupper(element.blockType); 
-    string discoveryYear;
     string stateTypeName = "unknown";
     char stateType = toupper(element.stateType);
-   HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
+    string discoveryYear;
+    HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
 
 
     kelvinm = element.meltingPoint + 273.15; 
@@ -533,7 +533,7 @@ void displayAllElements(Element element)
     default:
         break;
     }
-
+    
     switch (stateType)
     {
     case 'L':
@@ -552,19 +552,20 @@ void displayAllElements(Element element)
         break;
     }
 
-
-    SetConsoleTextAttribute(color, 2);
+   
+    setColor(10); 
     cout << "\n\tAtomic # " << right << setw(8) << ": " << element.atomicNum; 
     cout << "\n\tSymbol " << right << setw(10) << ": " << element.symbol; 
-    cout << "\n\tName " << right << setw(12) << ": " << element.name;
+    cout << "\n\tName " << right << setw(12) << ": " << element.name; 
     cout << "\n\tMass " << right << setw(12) << setprecision(3) << fixed << ": " << element.mass << " u"; 
-    cout << "\n\tState type " << right << setw(6) << ": " << element.stateType; 
+    cout << "\n\tState type " << right << setw(6) << ": " << stateTypeName;
     cout << "\n\tGroup # " << right << setw(9) << setprecision(1) << ": " << element.groupNum; 
     cout << "\n\tPeriod # " << right << setw(8) << ": " << element.periodNum; 
     cout << "\n\tBlock type " << right << setw(7) << ": (" << block << ") " << blockTypeName;
     cout << "\n\tMelting point " << right << setw(3) << setprecision(2) << fixed << ": " << element.meltingPoint << "\370C; " << farenheitm << "\370F; " << kelvinm << "\370K"; 
-    cout << "\n\tBoiling point " << right << setw(3) << ": " << element.boilingPoint << "\370C; " << farenheitb << "\370F; " << kelvinb << "\370K";
+    cout << "\n\tBoiling point " << right << setw(3) << ": " << element.boilingPoint << "\370C; " << farenheitb << "\370F; " << kelvinb << "\370K"; 
     cout << "\n\tDiscovery year " << right << setw(2) << ": ";
+
     if (element.discoveryYear == 0) 
     {
         cout << "Prehistoric" << "\n";
@@ -636,13 +637,13 @@ void displayAllElements(Element element[], int size)
             break;
         }
 
-        SetConsoleTextAttribute(color, 2);
+        SetConsoleTextAttribute(color, 10);
         cout << "\tIndex[" << i << "]\n";
         cout << "\tAtomic # " << right << setw(8) << ": " << element[i].atomicNum << "\n"; 
         cout << "\tSymbol " << right << setw(10) << ": " << element[i].symbol << "\n"; 
         cout << "\tName " << right << setw(12) << ": " << element[i].name << "\n"; 
         cout << "\tMass " << right << setw(12) << setprecision(3) << fixed << ": " << element[i].mass << " u\n"; 
-        cout << "\tState type " << right << setw(6) << ": " << element[i].stateType << "\n"; 
+        cout << "\tState type " << right << setw(6) << ": " << stateTypeName << "\n"; 
         cout << "\tGroup # " << right << setw(9) << setprecision(1) << ": " << element[i].groupNum << "\n"; 
         cout << "\tPeriod # " << right << setw(8) << ": " << element[i].periodNum << "\n"; 
         cout << "\tBlock type " << right << setw(7) << ": (" << block << ") " << blockTypeName << "\n";
@@ -718,13 +719,13 @@ void displayAllElements(const vector<Element>& element)
             break;
         }
 
-        SetConsoleTextAttribute(color, 2);
+        SetConsoleTextAttribute(color, 10);
         cout << "\tIndex[" << i << "]\n";
         cout << "\tAtomic # " << right << setw(8) << ": " << element[i].atomicNum << "\n"; 
         cout << "\tSymbol " << right << setw(10) << ": " << element[i].symbol << "\n"; 
         cout << "\tName " << right << setw(12) << ": " << element[i].name << "\n"; 
         cout << "\tMass " << right << setw(12) << setprecision(3) << fixed << ": " << element[i].mass << " u\n"; 
-        cout << "\tState type " << right << setw(6) << ": " << element[i].stateType << "\n"; 
+        cout << "\tState type " << right << setw(6) << ": " << stateTypeName << "\n"; 
         cout << "\tGroup # " << right << setw(9) << setprecision(1) << ": " << element[i].groupNum << "\n"; 
         cout << "\tPeriod # " << right << setw(8) << ": " << element[i].periodNum << "\n"; 
         cout << "\tBlock type " << right << setw(7) << ": (" << block << ") " << blockTypeName << "\n";
@@ -760,7 +761,7 @@ void sectionA_fileElementDisplay(fstream& binaryFile)
     }
 
     binaryFile.read(reinterpret_cast<char*>(&element), sizeof(element)); 
-    SetConsoleTextAttribute(color, 2);
+    SetConsoleTextAttribute(color, 10);
     cout << "\n\tCONFIRMATION: " << count << " record(s) found. \n\n";
     SetConsoleTextAttribute(color, 15);
 }
@@ -771,9 +772,9 @@ void sectionA_addElement(fstream& binaryFile, string fileBin, long atomicNum)
     HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
 
     element.atomicNum = static_cast <short> (atomicNum); 
-    strncpy_s(element.symbol, inputString("\tSpecify the Element Symbol: ", false).c_str(), sizeof(element.symbol) - 1); 
-    strncpy_s(element.name, inputString("\tSpecify the Element Name: ", false).c_str(), sizeof(element.name) - 1); 
-    element.mass = static_cast<float> (inputDouble("\tSpecify the Element Mass: ", true)); 
+    strncpy_s(element.symbol, inputString("\tSpecify the Element Symbol   : ", false).c_str(), sizeof(element.symbol) - 1); 
+    strncpy_s(element.name, inputString("\tSpecify the Element Name     : ", false).c_str(), sizeof(element.name) - 1); 
+    element.mass = static_cast<float> (inputDouble("\tSpecify the Element Mass     : ", true)); 
     element.stateType = inputChar("\tSpecify the Element State type(S - solid, L - liquid, G - gas, or U - unknown) : ", static_cast<string>("SLGU")); 
     element.groupNum = inputInteger("\tSpecify the Element Group # (0-unknown or 1...18) : ", 0, 18); 
     element.periodNum = inputInteger("\tSpecify the Element Period # (0-unknown or 1...7) : ", 0, 7); 
@@ -781,10 +782,10 @@ void sectionA_addElement(fstream& binaryFile, string fileBin, long atomicNum)
     element.meltingPoint = inputDouble("\tSpecify the Element Melting Point (celsius degree) : "); 
     element.boilingPoint = inputDouble("\tSpecify the Element Boiling Point (celsius degree) : "); 
     element.discoveryYear = static_cast <short> (inputInteger("\tSpecify the Element Discovery Year : ", 0, 2025)); 
-    strncpy_s(element.discoveredBy, inputString("\tSpecify the Element Discovered By : ", true).c_str(), sizeof(element.discoveredBy) - 1); 
+    strncpy_s(element.discoveredBy, inputString("\tSpecify the Element Discovered By  : ", true).c_str(), sizeof(element.discoveredBy) - 1); 
 
     binaryFile.write(reinterpret_cast<char*> (&element), sizeof(element)); 
-    SetConsoleTextAttribute(color, 2);
+    SetConsoleTextAttribute(color, 10);
     cout << "\n\tCONFIRMATION: A new element with Atomic # (" << element.atomicNum << ") has been added / appended into the binary data file, " << fileBin << " \n"; 
     SetConsoleTextAttribute(color, 15);
 }
@@ -800,31 +801,31 @@ void sectionA_updateElement(Element element, fstream& binaryFile, string fileBin
     do
     {
         system("cls");
-        SetConsoleTextAttribute(color, 2);
+        SetConsoleTextAttribute(color, 10);
         displayAllElements(temp);
         SetConsoleTextAttribute(color, 15);
 
 
         cout << "\n\tUpdating Element's information...";
-        cout << "\n\t" << string(80, '=');
-        cout << "\n\t1) Symbol";
-        cout << "\n\t2) Name";
-        cout << "\n\t3) Atomic Mass";
-        cout << "\n\t4) State Type";
-        cout << "\n\t5) Group#";
-        cout << "\n\t6) Block Type";
-        cout << "\n\t7) Period Type";
-        cout << "\n\t8) Melting Point";
-        cout << "\n\t9) Boiling Point";
+        cout << "\n\t" << string(80, char(205));
+        cout << "\n\t 1) Symbol";
+        cout << "\n\t 2) Name";
+        cout << "\n\t 3) Atomic Mass";
+        cout << "\n\t 4) State Type";
+        cout << "\n\t 5) Group #";
+        cout << "\n\t 6) Block Type";
+        cout << "\n\t 7) Period Type";
+        cout << "\n\t 8) Melting Point";
+        cout << "\n\t 9) Boiling Point";
         cout << "\n\t10) Discovered Year";
         cout << "\n\t11) Discovered By";
-        cout << "\n\t" << string(80, '-');
+        cout << "\n\t" << string(80, char(196));
         cout << "\n\t-1) Return WITHOUT change(s)";
-        cout << "\n\t0) Return WITH commited change(s)";
-        cout << "\n\t" << string(80, '=');
+        cout << "\n\t 0) Return WITH commited change(s)";
+        cout << "\n\t" << string(80, char(205)) << "\n";
 
 
-        switch (inputInteger("\n\tOption: ", -1, 11))
+        switch (inputInteger("\tOption: ", -1, 11))
         {
         case 0:
 
@@ -833,7 +834,7 @@ void sectionA_updateElement(Element element, fstream& binaryFile, string fileBin
             element = temp; 
             //Writes to specified record
             binaryFile.write(reinterpret_cast<char*>(&element), sizeof(element));
-            SetConsoleTextAttribute(color, 2);
+            SetConsoleTextAttribute(color, 10);
             cout << "\n\tCONFIRMATION: Element with Atomic # (" << recNum << ") has been updated into the binary data file," << fileBin << "\n\n";
             SetConsoleTextAttribute(color, 15);
             return;
@@ -844,37 +845,37 @@ void sectionA_updateElement(Element element, fstream& binaryFile, string fileBin
             SetConsoleTextAttribute(color, 0x07);
             return;
         case 1:
-            strncpy_s(temp.symbol, inputString("\n\tSpecify a new Element Symbol: ", false).c_str(), sizeof(temp.symbol) - 1);
+            strncpy_s(temp.symbol, inputString("\tSpecify a new Element Symbol: ", false).c_str(), sizeof(temp.symbol) - 1);
             break;
         case 2:
-            strncpy_s(temp.name, inputString("\n\tSpecify a new Element Name: ", false).c_str(), sizeof(temp.name) - 1);
+            strncpy_s(temp.name, inputString("\tSpecify a new Element Name: ", false).c_str(), sizeof(temp.name) - 1);
             break;
         case 3:
-            temp.mass = static_cast<float> (inputDouble("\n\tSpecify a new Element Mass: ", true));
+            temp.mass = static_cast<float> (inputDouble("\tSpecify a new Element Mass: ", true));
             break;
         case 4:
-            temp.stateType = inputChar("\n\tSpecify a new Element State type(S - solid, L - liquid, G - gas, or U - unknown) : ", static_cast<string>("SLGU"));
+            temp.stateType = inputChar("\tSpecify a new Element State type(S - solid, L - liquid, G - gas, or U - unknown) : ", static_cast<string>("SLGU"));
             break;
         case 5:
-            temp.groupNum = inputInteger("\n\tSpecify a new Element Group # (0-unknown or 1...18) : ", 0, 18);
+            temp.groupNum = inputInteger("\tSpecify a new Element Group # (0-unknown or 1...18) : ", 0, 18);
             break;
         case 6:
-            temp.blockType = inputChar("\n\tSpecify a new Element Block type(S - sharp, P - principal, D - diffuse, or F - fundamental) : ", static_cast<string>("SPDF"));
+            temp.blockType = inputChar("\tSpecify a new Element Block type(S - sharp, P - principal, D - diffuse, or F - fundamental) : ", static_cast<string>("SPDF"));
             break;
         case 7:
-            temp.periodNum = inputInteger("\n\tSpecify a new Element Period # (0-unknown or 1...7) : ", 0, 7);
+            temp.periodNum = inputInteger("\tSpecify a new Element Period type (1...7) : ", 0, 7);
             break;
         case 8:
-            temp.meltingPoint = inputDouble("\n\tSpecify the new Element Melting Point (celsius degree) : ");
+            temp.meltingPoint = inputDouble("\tSpecify the new Element Melting Point (celsius degree) : ");
             break;
         case 9:
-            temp.boilingPoint = inputDouble("\n\tSpecify the new Element Boiling Point (celsius degree) : ");
+            temp.boilingPoint = inputDouble("\tSpecify the new Element Boiling Point (celsius degree) : ");
             break;
         case 10:
-            temp.discoveryYear = static_cast <short> (inputInteger("\n\tSpecify the new Element Discovery Year : ", 0, 2025));
+            temp.discoveryYear = static_cast <short> (inputInteger("\tSpecify the new Element Discovery Year : ", 0, 2025));
             break;
         case 11:
-            strncpy_s(temp.discoveredBy, inputString("\n\tSpecify the new Element Discovered By : ", true).c_str(), sizeof(temp.discoveredBy) - 1);
+            strncpy_s(temp.discoveredBy, inputString("\tSpecify the new Element Discovered By : ", true).c_str(), sizeof(temp.discoveredBy) - 1);
             break;
         }
 
@@ -886,8 +887,8 @@ void sectionA_elementSearch(Element element, fstream& binaryFile, string fileBin
 {
     HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
 
-    SetConsoleTextAttribute(color, 2);
-    cout << "\n\tCONFIRMATION: The Element with Atomic # (" << element.atomicNum << ") is found at location #" << count << "\n\n"; //cout << "\nCONFIRMATION: The Element with Atomic # (" << elements.atomicNum << ") is found at location #" << count << "\n";
+    SetConsoleTextAttribute(color, 10);
+    cout << "\n\tCONFIRMATION: The Element with Atomic # (" << element.atomicNum << ") is found at location " << count << "\n\n"; //cout << "\nCONFIRMATION: The Element with Atomic # (" << elements.atomicNum << ") is found at location #" << count << "\n";
     SetConsoleTextAttribute(color, 15);
 }
 
@@ -903,17 +904,17 @@ void sectionA()
     {
         system("cls"); //clears the screen
         cout << "\n\t Option A: Advanced Binary File Menu";
-        cout << "\n\t" << string(80, '=');
+        cout << "\n\t" << string(80, char(205));
         cout << "\n\t1) Retrieve and display ALL element(s) from a binary data file";
         cout << "\n\t2) Add a new element to the binary data file";
         cout << "\n\t3) Update an existing element from the binary data file";
         cout << "\n\t4) Search for an element by atomic # from the binary data file";
-        cout << "\n\t" << string(80, '-');
+        cout << "\n\t" << string(80, char(196));
         cout << "\n\t0) Return to main menu";
 
 
-        cout << "\n\t" << string(80, '=');
-        switch (inputInteger("\n\tOption: ", 0, 4))
+        cout << "\n\t" << string(80, char(205)) << "\n";
+        switch (inputInteger("\tOption: ", 0, 4))
         {
         case 0:
             return;
@@ -925,7 +926,7 @@ void sectionA()
             if (!binaryFile)
             {
                 SetConsoleTextAttribute(color, 12);
-                cout << "\n\tERROR: File, " << fileBin << ", cannot be found.\n\n";
+                cout << "\tERROR: File, " << fileBin << ", cannot be found.\n\n";
                 SetConsoleTextAttribute(color, 15);
             }
             else
@@ -1083,7 +1084,7 @@ int  sectionB_fileReadnStore(Element*& element, int& SIZE)
     if (!myDataFileB1.is_open())
     {
         setColor(12);
-        cout << "\n\tERROR: file " << fileNamePrompt << " cannot be found.";
+        cout << "\n\tERROR: file " << fileNamePrompt << " cannot be found.\n\n";
         setColor(15);
         return 1;
 
@@ -1113,8 +1114,8 @@ int  sectionB_fileReadnStore(Element*& element, int& SIZE)
     }
 
     myDataFileB1.close();
-    setColor(2);
-    cout << "\n\tCONFIRMATION: Data from binary file," << fileNamePrompt << "has been retrieved and stored into dynamic array.";
+    setColor(10);
+    cout << "\n\tCONFIRMATION: Data from binary file," << fileNamePrompt << "has been retrieved and stored into dynamic array.\n\n";
     setColor(15);
 
     return 0;
@@ -1124,7 +1125,7 @@ int  sectionB_fileReadnStore(Element*& element, int& SIZE)
 int sectionB_displayElement(Element*& element, int& SIZE) 
 {
     system("cls");
-    cout << "\tDisplay ALL element(s) from the dynamic array...\n";
+    cout << "\tDisplay ALL element(s) from the dynamic array...\n\n";
 
 
     if (element == nullptr) 
@@ -1133,15 +1134,15 @@ int sectionB_displayElement(Element*& element, int& SIZE)
     if (SIZE == 0)
     {
         setColor(12);
-        cout << "\n\tERROR: Dynamic array is empty. Therfore, no element can be displayed.";
+        cout << "\n\tERROR: Dynamic array is empty. Therfore, no element can be displayed.\n\n";
         setColor(15);
         return 0;
     }
 
     displayAllElements(element, SIZE); 
 
-    setColor(2);
-    cout << "\n\t * Current size of the dynamic array : " << SIZE;
+    setColor(10);
+    cout << "\n\t * Current size of the dynamic array : " << SIZE << "\n\n";
     setColor(15);
 
     return 0;
@@ -1171,23 +1172,23 @@ int sectionB_addElement(Element*& element, int& SIZE)
         delete[] element; 
 
         newElements[SIZE].atomicNum = testAtomicNum;
-        strncpy_s(newElements[SIZE].symbol, inputString("\tSpecify the Element Symbol :", false).c_str(), sizeof(newElements[SIZE].symbol) - 1);
-        strncpy_s(newElements[SIZE].name, inputString("\tSpecify the Element Name :", false).c_str(), sizeof(newElements[SIZE].name) - 1);
-        newElements[SIZE].mass = inputDouble("\tSpecify the Element Mass :", true);
-        newElements[SIZE].stateType = (toupper(inputChar("\tSpecify the Element State type (S-solid, L-liquid, G-gas, or U-unknown) :", static_cast<string>("slgu"))));
-        newElements[SIZE].groupNum = inputInteger("\tSpecify the Element Group # (0 = unknown or 1...18) :", 0, 18);
-        newElements[SIZE].periodNum = inputInteger("\tSpecify the Element Period # (0 = unknown or 1...7) :", 0, 7);
-        newElements[SIZE].blockType = (toupper(inputChar("\tSpecify the Element Block type (S-sharp, P-principal, D-diffuse, or F-fundamental) :", static_cast<string>("spdf"))));
-        newElements[SIZE].meltingPoint = inputDouble("\tSpecify the Element Melting Point (celsius degree) :"); //valdiate& change 
-        newElements[SIZE].boilingPoint = inputDouble("\tSpecify the Element Boiling Point (celsius degree) :"); //validate
-        newElements[SIZE].discoveryYear = inputInteger("\tSpecify the Element Discovery Year :", 0, 2025);
-        strncpy_s(newElements[SIZE].discoveredBy, inputString("\tSpecify the Element Discoverred By :", true).c_str(), sizeof(newElements[SIZE].discoveredBy) - 1);
+        strncpy_s(newElements[SIZE].symbol, inputString("\tSpecify the Element Symbol  : ", false).c_str(), sizeof(newElements[SIZE].symbol) - 1);
+        strncpy_s(newElements[SIZE].name, inputString("\tSpecify the Element Name    : ", false).c_str(), sizeof(newElements[SIZE].name) - 1);
+        newElements[SIZE].mass = inputDouble("\tSpecify the Element Mass    : ", true);
+        newElements[SIZE].stateType = (toupper(inputChar("\tSpecify the Element State type (S-solid, L-liquid, G-gas, or U-unknown) : ", static_cast<string>("slgu"))));
+        newElements[SIZE].groupNum = inputInteger("\tSpecify the Element Group # (0 - unknown or 1...18) : ", 0, 18);
+        newElements[SIZE].periodNum = inputInteger("\tSpecify the Element Period # (0 - unknown or 1...7) : ", 0, 7);
+        newElements[SIZE].blockType = (toupper(inputChar("\tSpecify the Element Block type (S-sharp, P-principal, D-diffuse, or F-fundamental) : ", static_cast<string>("spdf"))));
+        newElements[SIZE].meltingPoint = inputDouble("\tSpecify the Element Melting Point (celsius degree) : "); //valdiate& change 
+        newElements[SIZE].boilingPoint = inputDouble("\tSpecify the Element Boiling Point (celsius degree) : "); //validate
+        newElements[SIZE].discoveryYear = inputInteger("\tSpecify the Element Discovery Year : ", 0, 2025);
+        strncpy_s(newElements[SIZE].discoveredBy, inputString("\tSpecify the Element Discoverred By : ", true).c_str(), sizeof(newElements[SIZE].discoveredBy) - 1);
 
         SIZE++;
         element = newElements; 
 
-        setColor(2);
-        cout << "\n\tCONFIRMATION: A new element with Atomic # (" << testAtomicNum << ") has been added into the dynamic array.";
+        setColor(10);
+        cout << "\n\tCONFIRMATION: A new element with Atomic # (" << testAtomicNum << ") has been added into the dynamic array.\n";
         setColor(15);
 
         // this is where the memory might be an issue test and run it this if function 
@@ -1199,6 +1200,7 @@ int sectionB_addElement(Element*& element, int& SIZE)
 
 
         short testAtomicNum = inputInteger("\n\tSpecify a new Element Atomic # : ", 1, 118);
+
 
 
         for (int i = 0; i < SIZE; i++)
@@ -1222,9 +1224,9 @@ int sectionB_addElement(Element*& element, int& SIZE)
 
         delete[] element; 
 
-
        
         newElements[SIZE].atomicNum = testAtomicNum;
+
         strncpy_s(newElements[SIZE].symbol, inputString("\tSpecify the Element Symbol :", false).c_str(), sizeof(newElements[SIZE].symbol) - 1);
         strncpy_s(newElements[SIZE].name, inputString("\tSpecify the Element Name :", false).c_str(), sizeof(newElements[SIZE].name) - 1);
         newElements[SIZE].mass = inputDouble("\tSpecify the Element Mass :", true);
@@ -1241,7 +1243,7 @@ int sectionB_addElement(Element*& element, int& SIZE)
         SIZE++;
         element = newElements; 
 
-        setColor(2);
+        setColor(10);
         cout << "\n\tCONFIRMATION: A new element with Atomic # (" << testAtomicNum << ") has been added into the dynamic array.";
         setColor(15);
     }
@@ -1251,7 +1253,7 @@ int sectionB_addElement(Element*& element, int& SIZE)
 
 // prompt user for changes change if need be
 // the display changes as you adjust the element  
-int sectionB_updateElement(Element*& element, int& SIZE) // maybe not an int //optionB4(element*& elements, int& SIZE)
+int sectionB_updateElement(Element*& element, int& SIZE) // maybe not an int 
 {
     system("cls");
 
@@ -1260,33 +1262,33 @@ int sectionB_updateElement(Element*& element, int& SIZE) // maybe not an int //o
     if (SIZE == 0)
     {
         setColor(12);
-        cout << "\n\n\tERROR: Dynamic array is empty and therefore no element can be updated.\n";
+        cout << "\n\n\tERROR: Dynamic array is empty and therefore no element can be updated.\n\n";
         setColor(15);
         return 1;
     }
 
     bool found = false;
-    short a_num = inputInteger("\n\n\tSpecify an existing Element Atomic # :", 1, 118);
-
+    short a_num = inputInteger("\n\tSpecify an existing Element Atomic # :", 1, 118);
+    system("cls");
     for (int i = 0; i < SIZE; i++)
     {
-        if (a_num == element[i].atomicNum) //if (a_num == elements[i].atomicNum) //this might need adjustment
+        if (a_num == element[i].atomicNum) 
         {
-            short atomicNumB = element[i].atomicNum; //short atomicNumB = elements[i].atomicNum;
+            short atomicNumB = element[i].atomicNum; 
             char symbolB[3];
-            strncpy_s(symbolB, sizeof(symbolB), element[i].symbol, _TRUNCATE); //strncpy_s(symbolB, sizeof(symbolB), elements[i].symbol, _TRUNCATE);
+            strncpy_s(symbolB, sizeof(symbolB), element[i].symbol, _TRUNCATE); 
             char nameB[25];
-            strncpy_s(nameB, sizeof(nameB), element[i].name, _TRUNCATE); //strncpy_s(nameB, sizeof(nameB), elements[i].name, _TRUNCATE);
-            float massB = element[i].mass; //float massB = elements[i].mass;
-            char stateTypeB = element[i].stateType; //char stateTypeB = elements[i].stateType;
-            short groupNumB = element[i].groupNum; //short groupNumB = elements[i].groupNum;
-            short periodNumB = element[i].periodNum; //short periodNumB = elements[i].periodNum;
-            char blockTypeB = element[i].blockType; //char blockTypeB = elements[i].blockType;
-            float meltingPointB = element[i].meltingPoint; //float meltingPointB = elements[i].meltingPoint;
-            float boilingPointB = element[i].boilingPoint; //float boilingPointB = elements[i].boilingPoint;
-            short discoveryYearB = element[i].discoveryYear; //short discoveryYearB = elements[i].discoveryYear;
+            strncpy_s(nameB, sizeof(nameB), element[i].name, _TRUNCATE);
+            float massB = element[i].mass; 
+            char stateTypeB = element[i].stateType; 
+            short groupNumB = element[i].groupNum; 
+            short periodNumB = element[i].periodNum; 
+            char blockTypeB = element[i].blockType; 
+            float meltingPointB = element[i].meltingPoint; 
+            float boilingPointB = element[i].boilingPoint; 
+            short discoveryYearB = element[i].discoveryYear;
             char discoveredByB[100];
-            strncpy_s(discoveredByB, sizeof(discoveredByB), element[i].discoveredBy, _TRUNCATE); //strncpy_s(discoveredByB, sizeof(discoveredByB), elements[i].discoveredBy, _TRUNCATE);
+            strncpy_s(discoveredByB, sizeof(discoveredByB), element[i].discoveredBy, _TRUNCATE); 
             do
             {
                 float kelvinm = 0.0;
@@ -1295,6 +1297,8 @@ int sectionB_updateElement(Element*& element, int& SIZE) // maybe not an int //o
                 float farenheitb = 0.0;
                 string blockTypeName = "unknown";
                 char block = toupper(blockTypeB);
+                string stateTypeName = "unknown";
+                char stateType = toupper(stateTypeB);
                 string discoveryYear;
 
                 HANDLE color = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -1323,12 +1327,30 @@ int sectionB_updateElement(Element*& element, int& SIZE) // maybe not an int //o
                     break;
                 }
 
-                SetConsoleTextAttribute(color, 2);
-                cout << setw(20) << left << "\n\tAtomic #" << ": " << left << element[i].atomicNum; //cout << setw(20) << left << "\n\tAtomic #" << ": " << left << elements[i].atomicNum;
+                switch (stateType)
+                {
+                case 'L':
+                    stateTypeName = "liquid";
+                    break;
+                case 'S':
+                    stateTypeName = "solid";
+                    break;
+                case 'G':
+                    stateTypeName = "gas";
+                    break;
+                case 'U':
+                    stateTypeName = "unknown";
+                    break;
+                default:
+                    break;
+                }
+
+                SetConsoleTextAttribute(color, 10);
+                cout << setw(20) << left << "\n\tAtomic #" << ": " << left << element[i].atomicNum; 
                 cout << setw(20) << left << "\n\tSymbol " << ": " << left << symbolB;
                 cout << setw(20) << left << "\n\tName " << ": " << left << nameB;
                 cout << setw(20) << left << "\n\tMass" << setprecision(3) << fixed << ": " << left << massB << " u";
-                cout << setw(20) << left << "\n\tState Type" << ": " << left << stateTypeB;
+                cout << setw(20) << left << "\n\tState Type" << ": " << left << stateTypeName;
                 cout << setw(20) << left << "\n\tGroup #" << ": " << left << groupNumB;
                 cout << setw(20) << left << "\n\tPeriod #" << ": " << periodNumB;
                 cout << setw(20) << left << "\n\tBlock Type" << ": (" << block << ") " << blockTypeName;
@@ -1358,41 +1380,40 @@ int sectionB_updateElement(Element*& element, int& SIZE) // maybe not an int //o
                 cout << "\n\t 7)  Period Type";
                 cout << "\n\t 8)  Melting Point";
                 cout << "\n\t 9)  Boiling Point";
-                cout << "\n\t 10) Discoverred Year";
-                cout << "\n\t 11) Discoverred BY";
-                cout << "\n\t" << string(100, char(205));
-                cout << "\n";
-                cout << "\n\t -1) Return WITHOUT changes(s)";
-                cout << "\n\t  0) Return WITH comitted change(s)";
-                cout << "\n\t" << string(100, char(205));
+                cout << "\n\t10) Discoverred Year";
+                cout << "\n\t11) Discoverred BY";
+                cout << "\n\t" << string(100, (196)); //single line symbol
+                cout << "\n\t-1) Return WITHOUT changes(s)";
+                cout << "\n\t 0) Return WITH comitted change(s)";
+                cout << "\n\t" << string(100, char(205));//double line symbol
                 switch (inputInteger("\n\tOption: ", -1, 11))
                 {
                 case -1:
                     setColor(0x0E);
-                    cout << "\nWarning: No update was committed.\n\n";
+                    cout << "\n\tWarning: No update was committed.\n\n";
                     setColor(15);
                     return 0;
-                case 1:strncpy_s(symbolB, inputString("\tSpecify the Element Symbol :", false).c_str(), sizeof(symbolB) - 1); break;
+                case 1:strncpy_s(symbolB, inputString("\tSpecify the Element Symbol : ", false).c_str(), sizeof(symbolB) - 1); break;
 
-                case 2:strncpy_s(nameB, inputString("\tSpecify the Element Name :", false).c_str(), sizeof(nameB) - 1); break;
+                case 2:strncpy_s(nameB, inputString("\tSpecify the Element Name : ", false).c_str(), sizeof(nameB) - 1); break;
 
-                case 3: massB = inputDouble("\tSpecify the Element Mass :"); break;
+                case 3: massB = inputDouble("\tSpecify the Element Mass : "); break;
 
-                case 4: stateTypeB = (toupper(inputChar("\tSpecify the Element State type (S-solid, L-liquid, G-gas, or U-unknown) :", static_cast<string>("slgu"))));; break;
+                case 4: stateTypeB = (toupper(inputChar("\tSpecify the Element State type (S-solid, L-liquid, G-gas, or U-unknown) : ", static_cast<string>("slgu"))));; break;
 
-                case 5: groupNumB = inputInteger("\tSpecify the Element Group # (0 = unknown or 1...18) :", 0, 18); break;
+                case 5: groupNumB = inputInteger("\tSpecify the Element Group # (1...18) : ", 1, 18); break;
 
-                case 6: blockTypeB = (toupper(inputChar("\tSpecify the Element Block type (S-sharp, P-principal, D-diffuse, or F-fundamental) :", static_cast<string>("spdf")))); break;
+                case 6: blockTypeB = (toupper(inputChar("\tSpecify the Element Block type (S-sharp, P-principal, D-diffuse, or F-fundamental) : ", static_cast<string>("spdf")))); break;
 
-                case 7: periodNumB = inputInteger("\tSpecify the Element Period # (0 = unknown or 1...7) :", 1, 7); break;
+                case 7: periodNumB = inputInteger("\tSpecify the Element Period # ( 1...7) : ", 1, 7); break; // prfessors is this "(1, 2, 3, 4, 5, 6, 7, L or A) "
 
-                case 8: meltingPointB = inputDouble("\tSpecify the Element Melting Point (celsius degree) :"); break;
+                case 8: meltingPointB = inputDouble("\tSpecify the Element Melting Point (celsius degree) : "); break;
 
-                case 9: boilingPointB = inputDouble("\tSpecify the Element Boiling Point (celsius degree) :"); break;
+                case 9: boilingPointB = inputDouble("\tSpecify the Element Boiling Point (celsius degree) : "); break;
 
-                case 10: discoveryYearB = inputInteger("\tSpecify the Element Discovery Year :", 0, 2025); break;
+                case 10: discoveryYearB = inputInteger("\tSpecify the Element Discovery Year : ", 0, 2025); break;
 
-                case 11: strncpy_s(discoveredByB, inputString("\tSpecify a new Element Discoverred By :", boolalpha).c_str(), sizeof(discoveredByB) - 1); break;
+                case 11: strncpy_s(discoveredByB, inputString("\tSpecify a new Element Discoverred By : ", boolalpha).c_str(), sizeof(discoveredByB) - 1); break;
 
                 case 0:
                     element[i].symbol;
@@ -1411,7 +1432,7 @@ int sectionB_updateElement(Element*& element, int& SIZE) // maybe not an int //o
                     element[i].discoveredBy; 
                     strncpy_s(element[i].discoveredBy, discoveredByB, sizeof(discoveredByB) - 1); 
 
-                    setColor(2);
+                    setColor(10);
                     cout << "\nCONFIRMATION: Element with Atomic # " << element[i].atomicNum << " has been updated into the dynamic array.\n";
                     setColor(15);
 
@@ -1421,7 +1442,7 @@ int sectionB_updateElement(Element*& element, int& SIZE) // maybe not an int //o
 
                 default:
                     setColor(12);
-                    cout << "\n\tERROR: Invalid Option.\n";
+                    cout << "\n\tERROR: Invalid Option.\n"; 
                     setColor(15);
                 }
                 system("cls");
@@ -1476,8 +1497,8 @@ int  sectionB_sortbySymbol(Element*& element, int& SIZE)
     else
     {
         sort(element, element + SIZE, sortDescending);
-        setColor(2);
-        cout << "\n\nCONFIRMATION: Dynamic array has been sorted by Symbol in ascending order. Please perfrom Option#2 to display the sorted array.\n";
+        setColor(10);
+        cout << "\n\n\tCONFIRMATION: Dynamic array has been sorted by Symbol in ascending order. Please perfrom Option#2 to display the sorted array.\n";
         setColor(15);
     }
 
@@ -1524,7 +1545,7 @@ int sectionB_binarySearchSymbol(Element*& element, int& SIZE)
     if (SIZE == 0)
     {
         setColor(12);
-        cout << "\n\n\tERROR: Dynamic array is empty. Therefore, search cannot be performed.\n";
+        cout << "\n\n\tERROR: Dynamic array is empty. Therefore, search cannot be performed.\n\n";
         setColor(15);
         return 1;
     }
@@ -1538,7 +1559,7 @@ int sectionB_binarySearchSymbol(Element*& element, int& SIZE)
     int result = binarySearch(element, SIZE, testSymbol); 
     if (result != -1)
     {
-        setColor(2);
+        setColor(10);
         cout << "\n\tCONFIRMATION: Element with Symbol(" << testSymbol << ") is found at index[" << result << "] from the dynamic array.\n";
         setColor(15);
     }
@@ -1571,16 +1592,16 @@ int  sectionB_arraytoFile(Element*& element, int& SIZE)
     if (SIZE == 0)
     {
         setColor(12);
-        cout << "\n\n\tERROR: Dynamic array is empty. Therefore, write to file cannot be completed.\n";
+        cout << "\n\n\tERROR: Dynamic array is empty. Therefore, write to file cannot be completed.\n\n";
         setColor(15);
         return 1;
     }
-    string NameofFile = inputString("\n\n\tEnter a binary data file name to store elements(no spaces): ", false);
+    string NameofFile = inputString("\n\n\tEnter a binary data file name to store elements: ", false);
 
    
     arrayToFile(NameofFile, element, SIZE);
-    setColor(2);
-    cout << "CONFIRMATION: Element(s) from dynamic array have been stored into file, " << NameofFile << ".";   
+    setColor(10);
+    cout << "\n\tCONFIRMATION: Element(s) from dynamic array have been stored into file, " << NameofFile << ".\n\n";   
     setColor(15);
     return 0;
 
@@ -1597,7 +1618,7 @@ void sectionB()
     {
         system("cls"); //clears the screen
         cout << "\n\t Option B: Dynamic Array";
-        cout << "\n\t" << string(80, '=');
+        cout << "\n\t" << string(80, char(205));
         cout << "\n\t1) Read element(s) from the binary data file and store into the dynamic array";
         cout << "\n\t2) Display element(s) from the dynamic array";
         cout << "\n\t3) Add a new chemistry element into the dynamic array";
@@ -1605,10 +1626,11 @@ void sectionB()
         cout << "\n\t5) Sort the dynamic array by Symbol in descending order";
         cout << "\n\t6) Binary search an element by Symbol";
         cout << "\n\t7) Write elements from the dynamic array to the binary data file.";
-        cout << "\n\t" << string(80, '-');
-        cout << "\n\t0) Return to main menu";
+        cout << "\n\t" << string(80, char(196));
+        cout << "\n\t0. return to main menu";
+        cout << "\n\t" << string(80, char(205)) << "\n";
 
-        switch (inputInteger("\n\tOption: ", 0, 7))
+        switch (inputInteger("\tOption: ", 0, 7))
         {
         case 0: return;
         case 1:
@@ -1633,7 +1655,7 @@ void sectionB()
             sectionB_arraytoFile(arrayOfElements, SIZE);
             break;
         }
-        cout << "\n\n\n";
+        //cout << "\n\n";
         system("pause");
     } while (true);
 
@@ -1685,7 +1707,7 @@ int optionC1(vector<Element>& element)
     }
 
     myDataFileB1.close();
-    setColor(2);
+    setColor(10);
     cout << "\n\tCONFIRMATION: Data from binary file, " << fileNamePrompt << ", has been retrieved and stored into the vector.\n\n";
     setColor(15);
 
@@ -1695,23 +1717,23 @@ int optionC1(vector<Element>& element)
 int optionC2(vector<Element>& element) // maybe not an int 
 {
     system("cls");
+    cout << "\n\n\tDisplay ALL element(s) from the vector...";
 
     if (element.data() == 0)
     {
         setColor(12);
-        cout << "\n\tERROR: The vector is empty. Therfore cannot display any element.\n";
+        cout << "\n\n\tERROR: The vector is empty. Therfore cannot display any element.\n\n";
         setColor(15);
 
         return 1;
 
     }
-
-    cout << "\n\n\tDisplay ALL element(s) from the vector...\n\n";
-
+     
+    cout << "\n\n\n";
     displayAllElements(element);
 
 
-    setColor(2);
+    setColor(10);
     cout << "\tSize : " << element.size() << "\n\n";
     setColor(15);
     return 0;
@@ -1763,9 +1785,9 @@ int optionC3(vector<Element>& element)
     strncpy_s(newElements.symbol, inputString("\tSpecify the Element Symbol : ", false).c_str(), sizeof(newElements.symbol) - 1);
     strncpy_s(newElements.name, inputString("\tSpecify the Element Name :", false).c_str(), sizeof(newElements.name) - 1);
     newElements.mass = inputDouble("\tSpecify the Element Mass : ", true);
-    newElements.stateType = (toupper(inputChar("\tSpecify the Element State type (S-solid, L-liquid, G-gas, or U-unknown) : ", static_cast<string>("slgu"))));
-    newElements.groupNum = inputInteger("\tSpecify the Element Group # (0 = unknown or 1...18) : ", 0, 18);
-    newElements.periodNum = inputInteger("\tSpecify the Element Period # (0 = unknown or 1...7) : ", 0, 7);
+    newElements.stateType = (toupper(inputChar("\tSpecify the Element State type (S-solid, L-liquid, G-gas, or U-unknown) : ", static_cast<string>("slgu")))); 
+    newElements.groupNum = inputInteger("\tSpecify the Element Group # (0 - unknown or 1...18) : ", 0, 18);
+    newElements.periodNum = inputInteger("\tSpecify the Element Period # (0 - unknown or 1...7) : ", 0, 7);
     newElements.blockType = (toupper(inputChar("\tSpecify the Element Block type (S-sharp, P-principal, D-diffuse, or F-fundamental) : ", static_cast<string>("spdf"))));
     newElements.meltingPoint = inputDouble("\tSpecify the Element Melting Point (celsius degree) : "); //valdiate& change 
     newElements.boilingPoint = inputDouble("\tSpecify the Element Boiling Point (celsius degree) : "); //validate
@@ -1775,7 +1797,7 @@ int optionC3(vector<Element>& element)
 
     element.push_back(newElements);
 
-    setColor(2);
+    setColor(10);
     cout << "\n\tCONFIRMATION: A new element with Atomic # (" << atomicNumC << ") has been added into the dynamic array.\n\n";
     setColor(15);
 
@@ -1799,7 +1821,7 @@ int optionC4(vector<Element>& element)
     }
 
     bool found = false;
-    short a_num = inputInteger("\n\n\tSpecify an existing Element Atomic # :", 1, 118);
+    short a_num = inputInteger("\n\tSpecify the atomic #  to be updated :", 1, 118);
 
 
     for (size_t i = 0; i < element.size(); i++)
@@ -1833,7 +1855,7 @@ int optionC4(vector<Element>& element)
                 string blockTypeName = "unknown";
                 char block = toupper(blockTypeB);
                 string stateTypeName = "unknown";
-                char stateType = toupper(element[i].stateType);
+                char stateType = toupper(stateTypeB);
                 string discoveryYear;
 
 
@@ -1884,13 +1906,13 @@ int optionC4(vector<Element>& element)
 
 
 
-                setColor(2);
+                setColor(10);
                 cout << "\n\tIndex[" << i << "]";
                 cout << setw(20) << left << "\n\tAtomic #" << ": " << left << element[i].atomicNum;
                 cout << setw(20) << left << "\n\tSymbol " << ": " << left << symbolB; // might need to checck if the input is the same 
                 cout << setw(20) << left << "\n\tName " << ": " << left << nameB;
-                cout << setw(20) << left << "\n\tMass" << ": " << left << massB << " u";
-                cout << setw(20) << left << "\n\tState Type" << ": " << left << stateTypeB;
+                cout << setw(20) << left << "\n\tMass" << ": " << left << setprecision(3) << fixed << massB << " u";
+                cout << setw(20) << left << "\n\tState Type" << ": " << left << stateTypeName;
                 cout << setw(20) << left << "\n\tGroup #" << ": " << left << groupNumB;
                 cout << setw(20) << left << "\n\tPeriod #" << ": " << periodNumB;
                 cout << setw(20) << left << "\n\tBlock Type" << ": (" << block << ") " << blockTypeName;
@@ -1927,7 +1949,6 @@ int optionC4(vector<Element>& element)
                 cout << "\n\t 10) Discoverred Year";
                 cout << "\n\t 11) Discoverred BY";
                 cout << "\n\t" << string(100, char(205));
-                cout << "\n";
                 cout << "\n\t -1) Return WITHOUT changes(s)";
                 cout << "\n\t  0) Return WITH comitted change(s)";
                 cout << "\n\t" << string(100, char(205));
@@ -1982,7 +2003,7 @@ int optionC4(vector<Element>& element)
                     element[i].discoveredBy;
                     strncpy_s(element[i].discoveredBy, discoveredByB, sizeof(discoveredByB) - 1);
 
-                    setColor(2);
+                    setColor(10);
                     cout << "\nCONFIRMATION: Element with Atomic # " << element[i].atomicNum << " has been updated into vector.\n";
                     setColor(15);
 
@@ -2006,7 +2027,7 @@ int optionC4(vector<Element>& element)
     if (!found)
     {
         setColor(12);
-        cout << "\n\n\t ERROR: Element with Atomic#(" << a_num << ") does not existed in the vector. Please perform other valid option.\n\n";
+        cout << "\n\t ERROR: Element with Atomic#(" << a_num << ") does not existed in the vector. Please perform other valid option.\n\n";
         setColor(15);
         return 1;
     }
@@ -2029,7 +2050,7 @@ int optionC5(vector<Element>& element)
 
     sort(element.begin(), element.end(), sortAscendingVector);
 
-    setColor(2);
+    setColor(10);
     cout << "\n\tCONFIRMATION: Vector has been sorted by Name in ascending order. Please perform Option#2 to display the newly sorted vector.\n\n";
     setColor(15);
 }
@@ -2085,7 +2106,7 @@ int optionC6(vector<Element>& element)
 
     if (result != -1)
     {
-        setColor(2);
+        setColor(10);
         cout << "\n\tCONFIRMATION: Element with Name(" << nameC << ") is found at Index[" << result << "] from vector.\n\n";
         setColor(15);
     }
@@ -2113,7 +2134,7 @@ void vectorToFile(string filename, vector<Element>& element)
 int optionC7(vector<Element>& element)
 {
     system("cls");
-    cout << "\t\nWriting elements from the vector to binary data file...\n";
+    cout << "\n\tWriting elements from the vector to binary data file...\n";
 
     if (element.data() == 0)
     {
@@ -2124,12 +2145,12 @@ int optionC7(vector<Element>& element)
     }
 
 
-    string NameofFile = inputString("\n\n\tEnter a binary data file name to store elements(no spaces): ", false);
+    string NameofFile = inputString("\n\tEnter a binary data file name to store elements: ", false);
 
 
     vectorToFile(NameofFile, element);
 
-    setColor(2);
+    setColor(10);
     cout << "CONFIRMATION: ELements(s) from dynamic array have been stored into file, " << NameofFile << ".\n\n";
     setColor(15);
 
@@ -2155,9 +2176,8 @@ void sectionC()
         cout << "\n\t 5) Sort the vector by Name  in ascending order";
         cout << "\n\t 6) Binary search for an element by Name";
         cout << "\n\t 7) Store elements from the vector into the binary data file";
-        cout << "\n\t" << string(100, char(205));
-        cout << "\n";
-        cout << "\n\t 0) Return to Main Menu"; // this option you just had return 0. but this looks better with return to main 
+        cout << "\n\t" << string(100, char(196));
+        cout << "\n\t 0) return";
         cout << "\n\t" << string(100, char(205));
         switch (inputInteger("\n\tOption: ", 0, 7))
         {
@@ -2186,8 +2206,8 @@ void optionX()
 
 
     setColor(15);
-    cout << "\n\tSize of the Element structure and its members (NOT HARDCODED)...";
-    setColor(2);
+    cout << "\n\tSize of the Element structure and its members (NOT HARDCODED)...\n";
+    setColor(10);
     cout << "\n\tElement                (total)    : " << sizeof(Element) << " bytes";
     cout << "\n\t\tAtomic #       (short)    :   " << sizeof(Element::atomicNum) << " bytes";
     cout << "\n\t\tSymbol         (c-string) :   " << sizeof(Element::symbol) << " bytes";
@@ -2200,7 +2220,7 @@ void optionX()
     cout << "\n\t\tMelting point  (float)    :   " << sizeof(Element::meltingPoint) << " bytes";
     cout << "\n\t\tBoiling point  (float)    :   " << sizeof(Element::boilingPoint) << " bytes";
     cout << "\n\t\tDiscovery year (short)    :   " << sizeof(Element::discoveryYear) << " bytes";
-    cout << "\n\t\tDiscoverred by (c-string) : " << sizeof(Element::discoveredBy) << " bytes\n\n\t";
+    cout << "\n\t\tDiscoverred by (c-string) : " << sizeof(Element::discoveredBy) << " bytes\n\t";
     setColor(15);
 
     /*
